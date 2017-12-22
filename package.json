@@ -1,0 +1,32 @@
+{
+  "name": "event-collection_107",
+  "description": "eHanlin 高一上學習寶典",
+  "author": "Aso <aso@ehanlin.com.tw>",
+  "version": "0.0.1-SNAPSHOT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eHanlin/event-collection_107.git"
+  },
+  "devDependencies": {
+    "browserify": "14.4.0",
+    "coffeeify": "2.1.0",
+    "del": "^2.2.2",
+    "event-stream": "^3.3.4",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-template-util": "0.0.2",
+    "path": "^0.12.7",
+    "pug": "2.0.0-rc.2",
+    "q": "^1.5.0"
+  },
+  "dependencies": {
+    "block-ui": "2.70.1",
+    "fs": "0.0.1-security",
+    "jquery": "1.7.2",
+    "moment": "2.13.0",
+    "underscore": "1.8.3"
+  },
+  "scripts": {
+    "test": "echo website"
+  }
+}

@@ -1,0 +1,14 @@
+.dataRow {
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  -moz-user-cursor: none;
+  -ms-user-cursor: none;
+  -webkit-user-cursor: none;
+}
+
+.commingSoon {
+  color: gray;
+}

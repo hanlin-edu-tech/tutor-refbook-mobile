@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link type="text/css" rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="./css/icon/flaticon.css">
+        <link type="text/css" rel="stylesheet" href="./css/handoutresource.css">
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+    </head>
+
+    <body>
+        <div class="contianer">
+            <div class="container" id="div_demo"></div>
+        </div>
+
+        <script type="text/javascript" src="./lib/jquery/jquery.js"></script>
+        <script type="text/javascript" src="./lib/jquery/jquery.tmpl.js"></script>
+        <script type="text/javascript" src="./lib/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="./js/handoutresource.js"></script>
+        <script type="text/javascript">
+            var host = 'www.ehanlin.com.tw';
+            $(document).ready(Init(host));
+        </script>
+
+        <script id="resource" type="text/x-jquery-tmpl">
+            <div class="container">
+                <table class="table">
+                    {{each(index,dataVal) data}}
+                    <tr class="dataRow panel" data-target="#tbody${dataVal.tbodyIndex}" data-parentgroup='#tbody${dataVal.tbodyIndex}'>
+                        <td class="info">
+                            ${dataVal.unitName}</td>
+                        {{if parentHash == dataVal.tbodyIndex }}
+                        <tbody id="tbody${dataVal.tbodyIndex}" class="collapse in">
+                            {{else}}
+                                <tbody id="tbody${dataVal.tbodyIndex}" class="collapse">
+                                    {{/if}}
+                    </tr>
+                    {{each(prop,val) dataVal.resources}}
+                    <tr>
+                        {{if val.enable}}
+                        <td id="${val.qRcode}" style="padding-left:5%" class="dataRow ${val.resourceTemplate}Row" data-resourceIds="${val.resourceIds}"
+                            data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
+                            <i class="${val.resourceClass}"> </i>${val.resourceName}</td>
+                        {{else}}
+                            <td id="${val.qRcode}" style="padding-left:5%" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
+                                <i class="${val.resourceClass}"> </i> ${val.resourceName} ${val.resourceDescription}</td>
+                            {{/if}}
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                    {{/each}}
+                </table>
+            </div>
+
+
+
+        </script>
+
+        <script id="video-template" type="text/x-jquery-tmpl">
+            <div id="${data.id}" class="collapse">
+                {{each(idOrd,youtubeId) data.resourceIds}}
+                <iframe class="youtube_player_iframe" width="560" height="315" src="https://www.youtube.com/embed/${youtubeId}?vq=large&enablejsapi=1"
+                    frameborder="0" allowfullscreen></iframe>
+                {{if idOrd != data.resourceIds.length-1}}
+                <hr>
+                {{/if}}
+                {{/each}}
+            </div>
+
+
+
+        </script>
+
+        <script id="mp3-template" type="text/x-juqery-tmpl">
+            <div id="${data.id}" class="collapse">
+                {{each(idOrd,mp3Id) data.resourceIds}}
+                <audio controls preload="none">
+                    <source src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/${data.year}/${data.type}/${data.subject}/mp3/${mp3Id}.mp3"
+                        type="audio/mpeg">
+                </audio>
+                {{if idOrd != data.resourceIds.length-1}}
+                <hr>
+                {{/if}}
+                {{/each}}
+            </div>
+
+
+
+        </script>
+
+
+        <script id="png-template" type="text/x-jquery-tmpl">
+            <div id="${data.id}" class="collapse">
+                {{each(idOrd,pngId) data.resourceIds}}
+                <img style="max-width: 100%; height:auto;" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/${data.year}/${data.type}/${data.subject}/png/${pngId}.png"> {{if idOrd != data.resourceIds.length-1}}
+                <hr>
+                {{/if}}
+                {{/each}}
+            </div>
+
+
+
+        </script>
+
+        <script id="pdf-template" type="text/x-jquery-tmpl">
+            <div id="${data.id}" class="collapse">
+                {{each(idOrd,pdfId) data.resourceIds}}
+                <a target="_blank" href="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/${data.year}/${data.type}/${data.subject}/pdf/${pdfId}.pdf">點我打開PDF</a>
+                {{if idOrd != data.resourceIds.length-1}}
+                <hr>
+                {{/if}}
+                {{/each}}
+            </div>
+
+
+
+        </script>
+
+
+        <script id="comming-template" type="text/x-jquery-tmpl">
+            <div id="${data.id}" class="collapse">
+                <img style="max-width: 100%; height:auto;" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/img/%E5%8D%B3%E5%B0%87%E4%B8%8A%E7%B7%9A.jpg">
+            </div>
+
+
+
+        </script>
+
+    </body>
+
+</html>
