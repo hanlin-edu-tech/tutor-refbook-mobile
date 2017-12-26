@@ -240,7 +240,7 @@ var Init = function(host) {
     "&subject=" +
     urlParams["subject"];
   $.ajax({
-    url: "https://" + host + "/handoutresource" + "/api/Find?" + query,
+    url: "/handoutresource" + "/api/Find?" + query,
     type: "GET",
     contentType: "application/json; charset=UTF-8",
     dataType: "json",
