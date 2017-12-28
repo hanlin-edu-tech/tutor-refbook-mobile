@@ -9,9 +9,9 @@
         <link type="text/css" rel="stylesheet" href="./css/handoutresource.css">
     </head>
 
-    <body class="body">
+    <body class="body" style="margin-left:0px;">
         <div class="contianer">
-            <div class="container" id="div_demo"></div>
+            <div id="div_demo"></div>
         </div>
 
         <script type="text/javascript" src="./js/ajax.js"></script>
@@ -26,7 +26,7 @@
         </script>
 
         <script id="resource" type="text/x-jquery-tmpl">
-            <div class="container">
+            <div>
                 <table class="ehanlinLogo">
                     <tr class="ehanlinLogoRow">
                         <img src="./img/339x40.png">
@@ -46,11 +46,11 @@
                     {{each(prop,val) dataVal.resources}}
                     <tr>
                         {{if val.enable}}
-                        <td id="${val.qRcode}" style="padding-left:5%" class="dataRow ${val.resourceTemplate}Row" data-resourceIds="${val.resourceIds}"
-                            data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
+                        <td id="${val.qRcode}" class="dataRow ${val.resourceTemplate}Row" data-resourceIds="${val.resourceIds}" data-target="#${val._id}"
+                            data-parentgroup="#tbody${dataVal.tbodyIndex}">
                             <i class="${val.resourceClass}"> </i>${val.resourceName}</td>
                         {{else}}
-                            <td id="${val.qRcode}" style="padding-left:5%" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
+                            <td id="${val.qRcode}" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
                                 <i class="${val.resourceClass}"> </i> ${val.resourceName} ${val.resourceDescription}</td>
                             {{/if}}
                     </tr>
@@ -59,9 +59,6 @@
                     {{/each}}
                 </table>
             </div>
-
-
-
         </script>
 
         <script id="video-template" type="text/x-jquery-tmpl">
@@ -74,9 +71,6 @@
                 {{/if}}
                 {{/each}}
             </div>
-
-
-
         </script>
 
         <script id="mp3-template" type="text/x-juqery-tmpl">
@@ -91,23 +85,17 @@
                 {{/if}}
                 {{/each}}
             </div>
-
-
-
         </script>
 
 
         <script id="png-template" type="text/x-jquery-tmpl">
             <div id="${data.id}" class="collapse">
                 {{each(idOrd,pngId) data.resourceIds}}
-                <img style="max-width: 100%; height:auto;" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/${data.year}/${data.type}/${data.subject}/png/${pngId}.png"> {{if idOrd != data.resourceIds.length-1}}
+                <img src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/${data.year}/${data.type}/${data.subject}/png/${pngId}.png"> {{if idOrd != data.resourceIds.length-1}}
                 <hr>
                 {{/if}}
                 {{/each}}
             </div>
-
-
-
         </script>
 
         <script id="pdf-template" type="text/x-jquery-tmpl">
@@ -119,19 +107,13 @@
                 {{/if}}
                 {{/each}}
             </div>
-
-
-
         </script>
 
 
         <script id="comming-template" type="text/x-jquery-tmpl">
             <div id="${data.id}" class="collapse">
-                <img style="max-width: 100%; height:auto;" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/img/%E5%8D%B3%E5%B0%87%E4%B8%8A%E7%B7%9A.jpg">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/img/%E5%8D%B3%E5%B0%87%E4%B8%8A%E7%B7%9A.jpg">
             </div>
-
-
-
         </script>
 
     </body>

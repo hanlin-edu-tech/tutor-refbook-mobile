@@ -13,7 +13,7 @@
   color: gray;
 }
 
-#div_demo.container img {
+.container img {
   width: 339px;
   height: 40px;
   margin: auto;
@@ -27,7 +27,7 @@
   font-size: 18px;
   font-family: "微軟正黑體";
 }
-
-/* .body {
-  width: 50%;
-} */
+.container {
+  left: 0px;
+  width: 1440px;
+}
