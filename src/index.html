@@ -36,7 +36,7 @@
                     {{each(index,dataVal) data}}
                     <tr class="dataRow panel" data-target="#tbody${dataVal.tbodyIndex}" data-parentgroup='#tbody${dataVal.tbodyIndex}'>
                         <td class="info">
-                            ${jsonData} ${dataVal.unitName}</td>
+                            ${dataVal.unitName}</td>
                         {{if parentHash == dataVal.tbodyIndex }}
                         <tbody id="tbody${dataVal.tbodyIndex}" class="collapse in">
                             {{else}}

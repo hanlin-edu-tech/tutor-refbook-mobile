@@ -56,7 +56,8 @@ function copyStaticTask(dest) {
           "src/css/icon/*",
           "src/css/icon/*.ico",
           "src/lib/**/*",
-          "src/js/*.js"
+          "src/js/*.js",
+          "src/img/*.png"
         ],
         {
           base: "src"
