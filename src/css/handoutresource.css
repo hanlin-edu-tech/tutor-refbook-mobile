@@ -24,9 +24,15 @@
 }
 
 .table .info span {
-  font-size: 18px;
+  font-size: 48px;
   font-family: "微軟正黑體";
 }
+
+.table .dataRow.videoRow {
+  font-size: 40px;
+  font-family: "微軟正黑體";
+}
+
 .container {
   left: 0px;
   width: 1440px;
