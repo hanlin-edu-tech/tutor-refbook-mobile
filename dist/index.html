@@ -9,27 +9,34 @@
         <link type="text/css" rel="stylesheet" href="./css/handoutresource.css">
     </head>
 
-    <body>
+    <body class="body">
         <div class="contianer">
             <div class="container" id="div_demo"></div>
         </div>
 
+        <script type="text/javascript" src="./js/ajax.js"></script>
         <script type="text/javascript" src="./lib/jquery/jquery.js"></script>
         <script type="text/javascript" src="./lib/jquery/jquery.tmpl.js"></script>
         <script type="text/javascript" src="./lib/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="./js/handoutresource.js"></script>
+        <script type="text/javascript" src="./js/subject-map.js"></script>
         <script type="text/javascript">
-            var host = '';
-            $(document).ready(Init(host));
+            // var host = "www.ehanlin.com.tw"
+            $(document).ready(Init());
         </script>
 
         <script id="resource" type="text/x-jquery-tmpl">
             <div class="container">
+                <table class="ehanlinLogo">
+                    <tr class="ehanlinLogoRow">
+                        <img src="./img/339x40.png">
+                    </tr>
+                </table>
                 <table class="table">
                     {{each(index,dataVal) data}}
                     <tr class="dataRow panel" data-target="#tbody${dataVal.tbodyIndex}" data-parentgroup='#tbody${dataVal.tbodyIndex}'>
                         <td class="info">
-                            ${dataVal.unitName}</td>
+                            ${jsonData} ${dataVal.unitName}</td>
                         {{if parentHash == dataVal.tbodyIndex }}
                         <tbody id="tbody${dataVal.tbodyIndex}" class="collapse in">
                             {{else}}
@@ -60,7 +67,7 @@
         <script id="video-template" type="text/x-jquery-tmpl">
             <div id="${data.id}" class="collapse">
                 {{each(idOrd,youtubeId) data.resourceIds}}
-                <iframe class="youtube_player_iframe" width="560" height="315" src="https://www.youtube.com/embed/${youtubeId}?vq=large&enablejsapi=1"
+                <iframe class="youtube_player_iframe" width=a uto height=a uto src="https://www.youtube.com/embed/${youtubeId}?vq=large&enablejsapi=1"
                     frameborder="0" allowfullscreen></iframe>
                 {{if idOrd != data.resourceIds.length-1}}
                 <hr>

@@ -12,3 +12,22 @@
 .commingSoon {
   color: gray;
 }
+
+#div_demo.container img {
+  width: 339px;
+  height: 40px;
+  margin: auto;
+}
+
+.ehanlinLogo {
+  width: 100%;
+}
+
+.table .info span {
+  font-size: 18px;
+  font-family: "微軟正黑體";
+}
+
+/* .body {
+  width: 50%;
+} */
