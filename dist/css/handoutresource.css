@@ -24,13 +24,18 @@
 }
 
 .table .info {
-  font-size: 48px;
+  font-size: 78px;
   font-family: "微軟正黑體";
 }
 
 .table .dataRow.videoRow {
-  font-size: 40px;
+  font-size: 70px;
   font-family: "微軟正黑體";
+}
+
+.youtube_player_iframe {
+  width: 1000px;
+  height: 580px;
 }
 
 .container {
