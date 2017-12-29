@@ -27,16 +27,8 @@
         </script>
 
         <script id="resource" type="text/x-jquery-tmpl">
-            <table>
-                <tr class="ehanlinLogo">
-                    <td>
-                        <img src="./img/339x40.png">
-                    </td>
-                </tr>
-            </table>
-
             <table class="table">
-                {{each(index,dataVal) data}}
+                <img style="width:100%;" src="./img/339x40.png"> {{each(index,dataVal) data}}
                 <tr class="dataRow panel" data-target="#tbody${dataVal.tbodyIndex}" data-parentgroup='#tbody${dataVal.tbodyIndex}'>
                     <td class="info">
                         ${dataVal.subjectName} ${dataVal.unitName}
