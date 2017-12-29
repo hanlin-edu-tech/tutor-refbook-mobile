@@ -72,8 +72,10 @@
         <script id="video-template" type="text/x-jquery-tmpl">
             <div id="${data.id}" class="collapse">
                 {{each(idOrd,youtubeId) data.resourceIds}}
-                <iframe class="youtube_player_iframe" src="https://www.youtube.com/embed/${youtubeId}?vq=large&enablejsapi=1" frameborder="0"
-                    allowfullscreen></iframe>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="youtube_player_iframe embed-responsive-item" src="https://www.youtube.com/embed/${youtubeId}?vq=large&enablejsapi=1"
+                        frameborder="0" allowfullscreen></iframe>
+                </div>
                 {{if idOrd != data.resourceIds.length-1}}
                 <hr>
                 {{/if}}
