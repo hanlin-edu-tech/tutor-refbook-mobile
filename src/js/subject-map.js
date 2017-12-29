@@ -24,7 +24,7 @@ var appendSubjectTitle = function() {
           subjectSession +
           "</span>"
       );
-      console.log(subjectMap.get(getSubject));
+      console.log("appendSubjectTitle()" + subjectMap.get(getSubject));
     },
     function(jsonData) {
       console.log("errorData: " + jsonData);

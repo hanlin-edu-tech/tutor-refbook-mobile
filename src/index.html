@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>高中社會學習寶典</title>
+        <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
         <link type="text/css" rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css" />
         <link type="text/css" rel="stylesheet" href="./css/icon/flaticon.css">
         <link type="text/css" rel="stylesheet" href="./css/handoutresource.css">
@@ -21,8 +22,8 @@
         <script type="text/javascript" src="./js/handoutresource.js"></script>
         <script type="text/javascript" src="./js/subject-map.js"></script>
         <script type="text/javascript">
-            // var host = "www.ehanlin.com.tw"
-            $(document).ready(Init());
+            // let host = "www.ehanlin.com.tw"
+            $(document).ready(Init(host));
         </script>
 
         <script id="resource" type="text/x-jquery-tmpl">
@@ -38,7 +39,7 @@
                 {{each(index,dataVal) data}}
                 <tr class="dataRow panel" data-target="#tbody${dataVal.tbodyIndex}" data-parentgroup='#tbody${dataVal.tbodyIndex}'>
                     <td class="info">
-                        ${dataVal.unitName}
+                        ${dataVal.subjectName} ${dataVal.unitName}
                     </td>
                 </tr>
 
@@ -51,10 +52,12 @@
                                 {{if val.enable}}
                                 <td id="${val.qRcode}" class="dataRow ${val.resourceTemplate}Row" data-resourceIds="${val.resourceIds}" data-target="#${val._id}"
                                     data-parentgroup="#tbody${dataVal.tbodyIndex}">
-                                    <i class="${val.resourceClass}"> </i>${val.resourceName}</td>
+                                    <i class="${val.resourceClass}"> </i>${val.resourceName}
+                                </td>
                                 {{else}}
                                     <td id="${val.qRcode}" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
-                                        <i class="${val.resourceClass}"> </i> ${val.resourceName} ${val.resourceDescription}</td>
+                                        <i class="${val.resourceClass}"> </i> ${val.resourceName} ${val.resourceDescription}
+                                    </td>
                                     {{/if}}
                             </tr>
                             {{/each}}

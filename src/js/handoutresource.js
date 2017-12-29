@@ -239,14 +239,13 @@ var Init = function(host) {
     urlParams["type"] +
     "&subject=" +
     urlParams["subject"];
-
   ajaxGet(
     "/handoutresource" + "/api/Find?" + query,
     // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=橘子複習講義&subject=pc",
     null,
     function(data) {
       console.log(data);
-      appendSubjectTitle();
+
       if (!data[0].resources.length) {
         var img =
           '<img style="max-width: 100%; height:auto;" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/img/%E6%95%AC%E8%AB%8B%E6%9C%9F%E5%BE%85.jpg">';
