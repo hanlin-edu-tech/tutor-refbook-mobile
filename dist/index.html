@@ -26,39 +26,44 @@
         </script>
 
         <script id="resource" type="text/x-jquery-tmpl">
-            <div>
-                <table class="ehanlinLogo">
-                    <tr class="ehanlinLogoRow">
+            <table>
+                <tr class="ehanlinLogo">
+                    <td>
                         <img src="./img/339x40.png">
-                    </tr>
-                </table>
-                <table class="table">
-                    {{each(index,dataVal) data}}
-                    <tr class="dataRow panel" data-target="#tbody${dataVal.tbodyIndex}" data-parentgroup='#tbody${dataVal.tbodyIndex}'>
-                        <td class="info">
-                            ${dataVal.unitName}</td>
-                        {{if parentHash == dataVal.tbodyIndex }}
-                        <tbody id="tbody${dataVal.tbodyIndex}" class="collapse in">
-                            {{else}}
-                                <tbody id="tbody${dataVal.tbodyIndex}" class="collapse">
+                    </td>
+                </tr>
+            </table>
+
+            <table class="table">
+                {{each(index,dataVal) data}}
+                <tr class="dataRow panel" data-target="#tbody${dataVal.tbodyIndex}" data-parentgroup='#tbody${dataVal.tbodyIndex}'>
+                    <td class="info">
+                        ${dataVal.unitName}
+                    </td>
+                </tr>
+
+                {{if parentHash == dataVal.tbodyIndex }}
+                <tbody id="tbody${dataVal.tbodyIndex}" class="collapse in">
+                    {{else}}
+                        <tbody id="tbody${dataVal.tbodyIndex}" class="collapse">
+                            {{each(prop,val) dataVal.resources}}
+                            <tr>
+                                {{if val.enable}}
+                                <td id="${val.qRcode}" class="dataRow ${val.resourceTemplate}Row" data-resourceIds="${val.resourceIds}" data-target="#${val._id}"
+                                    data-parentgroup="#tbody${dataVal.tbodyIndex}">
+                                    <i class="${val.resourceClass}"> </i>${val.resourceName}</td>
+                                {{else}}
+                                    <td id="${val.qRcode}" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
+                                        <i class="${val.resourceClass}"> </i> ${val.resourceName} ${val.resourceDescription}</td>
                                     {{/if}}
-                    </tr>
-                    {{each(prop,val) dataVal.resources}}
-                    <tr>
-                        {{if val.enable}}
-                        <td id="${val.qRcode}" class="dataRow ${val.resourceTemplate}Row" data-resourceIds="${val.resourceIds}" data-target="#${val._id}"
-                            data-parentgroup="#tbody${dataVal.tbodyIndex}">
-                            <i class="${val.resourceClass}"> </i>${val.resourceName}</td>
-                        {{else}}
-                            <td id="${val.qRcode}" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
-                                <i class="${val.resourceClass}"> </i> ${val.resourceName} ${val.resourceDescription}</td>
-                            {{/if}}
-                    </tr>
-                    {{/each}}
-                    </tbody>
-                    {{/each}}
-                </table>
-            </div>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                </tbody>
+                {{/if}}
+
+                {{/each}}
+            </table>
         </script>
 
         <script id="video-template" type="text/x-jquery-tmpl">
