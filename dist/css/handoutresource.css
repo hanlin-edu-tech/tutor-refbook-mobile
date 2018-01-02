@@ -13,18 +13,8 @@
   color: gray;
 }
 
-.container img {
-  width: 339px;
-  height: 40px;
-  margin: auto;
-}
-
-.ehanlinLogo {
-  width: 100%;
-}
-
 .table .info {
-  font-size: 78px;
+  font-size: 82px;
   font-family: "微軟正黑體";
 }
 
@@ -33,7 +23,11 @@
   font-family: "微軟正黑體";
 }
 
-.container {
-  left: 0px;
-  width: 1440px;
+.table .unit-name {
+  font-weight: bold;
+  font-size: 76px;
+}
+
+.table .subject-name {
+  font-weight: bold;
 }
