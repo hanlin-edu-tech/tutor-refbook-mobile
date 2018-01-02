@@ -6,6 +6,7 @@ var del = require("del");
 var path = require("path");
 var Q = require("q");
 var util = require("gulp-template-util");
+var babel = require("gulp-babel");
 
 function buildStyle() {
   return es.map(function(file, cb) {
@@ -73,6 +74,10 @@ function cleanTask() {
 
 gulp.task("lib", libTask("src/lib"));
 gulp.task("build", ["style", "lib"]);
+
+gulp.task("js", function() {
+  return gulp.src("src/js/*.js").pipe(babel());
+});
 
 gulp.task("package", function() {
   var deferred = Q.defer();
