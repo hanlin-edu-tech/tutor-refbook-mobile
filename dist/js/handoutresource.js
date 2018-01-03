@@ -3,11 +3,22 @@ var preElement = {};
 const tablePrefix = "tb";
 var qrcodeLists = [];
 
+function goFullscreen() {
+  var element = document.getElementsByClassName("ytp-large-play-button");
+
+  if (element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if (element.webkitRequestFullScreen) {
+    element.webkitRequestFullScreen();
+  }
+}
+
 function Clickvideo() {
   var data = GetData(this);
   var temp = $("#video-template").tmpl({
     data: data
   });
+  goFullscreen();
   temp.appendTo(this);
   if ($.isEmptyObject(preElement)) {
     preElement = this;
