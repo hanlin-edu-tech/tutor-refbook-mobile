@@ -8,12 +8,6 @@ function Clickvideo() {
   var temp = $("#video-template").tmpl({
     data: data
   });
-  locOrientation =
-    screen.lockOrientation ||
-    screen.mozLockOrientation ||
-    screen.msLockOrientation ||
-    screen.orientation.lock;
-  lockOrientation("portrait");
   temp.appendTo(this);
   if ($.isEmptyObject(preElement)) {
     preElement = this;
