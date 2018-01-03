@@ -8,6 +8,7 @@ function Clickvideo() {
   var temp = $("#video-template").tmpl({
     data: data
   });
+  screen.lockOrientation("portrait");
   temp.appendTo(this);
   if ($.isEmptyObject(preElement)) {
     preElement = this;

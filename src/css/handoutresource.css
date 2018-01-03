@@ -31,3 +31,17 @@
 .table .subject-name {
   font-weight: bold;
 }
+
+@media screen and (orientation: portrait) {
+  .table .youtube_player_iframe.embed-responsive-item {
+    width: 100%;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .table .youtube_player_iframe.embed-responsive-item {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+}
