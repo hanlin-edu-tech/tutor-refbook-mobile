@@ -3,13 +3,19 @@ var preElement = {};
 const tablePrefix = "tb";
 var qrcodeLists = [];
 
-function goFullscreen() {
-  var element = document.getElementsByClassName("ytp-large-play-button");
+function setupListener() {
+  $(".wrapper button").on("click", playFullscreen);
+}
 
-  if (element.mozRequestFullScreen) {
-    element.mozRequestFullScreen();
-  } else if (element.webkitRequestFullScreen) {
-    element.webkitRequestFullScreen();
+function playFullscreen() {
+  var iframe = $(".table .youtube_player_iframe.embed-responsive-item");
+  var requestFullScreen =
+    iframe.requestFullScreen ||
+    iframe.mozRequestFullScreen ||
+    iframe.webkitRequestFullScreen;
+
+  if (requestFullScreen) {
+    requestFullScreen.bind(iframe);
   }
 }
 
@@ -18,7 +24,9 @@ function Clickvideo() {
   var temp = $("#video-template").tmpl({
     data: data
   });
-  goFullscreen();
+  if (data != null) {
+    console.log(data);
+  }
   temp.appendTo(this);
   if ($.isEmptyObject(preElement)) {
     preElement = this;
@@ -297,4 +305,5 @@ var Init = function(host) {
       console.log("errorData: " + data);
     }
   );
+  setupListener();
 };
