@@ -245,6 +245,7 @@ var Init = function(host) {
     null,
     function(data) {
       console.log(data);
+      console.log(data[0]);
 
       if (!data[0].resources.length) {
         var img =
@@ -282,30 +283,74 @@ var Init = function(host) {
         preElement = event.target;
       });
 
-      var fullscreen = function() {
-        console.log("=====> fullscreen running <=====");
-        let isSupportFullScreen =
-          document.fullscreenEnabled ||
-          document.webkitFullscreenEnabled ||
-          document.mozFullScreenEnabled ||
-          document.msFullscreenEnabled;
+      // var fullscreen = function() {
+      //   console.log("=====> fullscreen running <=====");
+      //   let isSupportFullScreen =
+      //     document.fullscreenEnabled ||
+      //     document.webkitFullscreenEnabled ||
+      //     document.mozFullScreenEnabled ||
+      //     document.msFullscreenEnabled;
 
-        if (isSupportFullScreen) {
-          let youtube = document.querySelector("iframe.youtube_player_iframe");
+      //   if (isSupportFullScreen) {
+      //     let youtube = document.querySelector("iframe.youtube_player_iframe");
 
-          if (youtube.requestFullscreen) {
-            youtube.requestFullscreen();
-          } else if (youtube.webkitRequestFullscreen) {
-            youtube.webkitRequestFullscreen();
-          } else if (youtube.mozRequestFullScreen) {
-            youtube.mozRequestFullScreen();
-          } else if (youtube.msRequestFullscreen) {
-            youtube.msRequestFullscreen();
+      //     if (youtube.requestFullscreen) {
+      //       youtube.requestFullscreen();
+      //     } else if (youtube.webkitRequestFullscreen) {
+      //       youtube.webkitRequestFullscreen();
+      //     } else if (youtube.mozRequestFullScreen) {
+      //       youtube.mozRequestFullScreen();
+      //     } else if (youtube.msRequestFullscreen) {
+      //       youtube.msRequestFullscreen();
+      //     }
+      //   }
+      // };
+
+      // $(".wrapper button").on("click", fullscreen);
+
+      var player, iframe;
+      $(".dataRow.videoRow").on("click", function(event) {
+        var videoId = event.target.attributes[2].value;
+        onYouTubeIframeAPIReady(videoId);
+      });
+
+      function onYouTubeIframeAPIReady(videoId) {
+        player = new YT.Player("player", {
+          videoId: videoId,
+          events: {
+            onReady: onPlayerReady
           }
-        }
-      };
+        });
+        console.log(videoId);
+      }
 
-      $(".wrapper button").on("click", fullscreen);
+      function onPlayerReady(event) {
+        console.log("========1========");
+        var player = event.target;
+        iframe = document.querySelector("div.embed-responsive-16by9");
+        // setupListener();
+      }
+
+      // function setupListener() {
+      //   console.log("========2========");
+      //   let $ = document.querySelector.bind(document);
+      //   $(".wrapper button").on("click", playFullscreen);
+      // }
+
+      $(".wrapper button").on("click", playFullscreen);
+
+      function playFullscreen() {
+        console.log("========3========");
+        player.playVideo();
+
+        var requestFullScreen =
+          iframe.requestFullScreen ||
+          iframe.mozRequestFullScreen ||
+          iframe.webkitRequestFullScreen;
+        if (requestFullScreen) {
+          requestFullScreen.bind(iframe)();
+        }
+      }
     },
     function(data) {
       console.log("errorData: " + data);
