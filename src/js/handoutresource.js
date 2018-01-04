@@ -327,7 +327,9 @@ var Init = function(host) {
       function onPlayerReady(event) {
         console.log("========1========");
         var player = event.target;
-        iframe = document.querySelector("div.embed-responsive-16by9");
+        iframe = document.querySelector(
+          ".youtube_player_iframe.embed-responsive-item"
+        );
         // setupListener();
       }
 
@@ -341,7 +343,7 @@ var Init = function(host) {
 
       function playFullscreen() {
         console.log("========3========");
-        player.playVideo();
+        // player.playVideo();
 
         var requestFullScreen =
           iframe.requestFullScreen ||
