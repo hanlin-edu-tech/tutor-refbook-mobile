@@ -75,9 +75,7 @@
         <div id="${data.id}" class="collapse">
             {{each(idOrd,youtubeId) data.resourceIds}}
             <div class="embed-responsive embed-responsive-16by9">
-                <iframe id="player" class="youtube_player_iframe embed-responsive-item" type="text/html" height="100%" width="100%" src="https://www.youtube.com/embed/${youtubeId}?vq=large&enablejsapi=1"
-                    frameborder="0">
-                </iframe>
+                <div id="${youtubeId}"></div>
             </div>
             {{if idOrd != data.resourceIds.length-1}}
             <hr size="3px" align="center" width="100%">
@@ -85,6 +83,7 @@
             {{/each}}
         </div>
     </script>
+
 
     <script id="mp3-template" type="text/x-juqery-tmpl">
         <div id="${data.id}" class="collapse">
