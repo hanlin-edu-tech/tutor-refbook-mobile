@@ -173,6 +173,7 @@ function IframeResize() {
 function Collapse() {
   var sender = $(this);
   var target = $(sender.attr("data-target"));
+  $(".fullscreen-collapse").toggleClass("in");
   target.toggleClass("in");
   sender.trigger("collpase", sender);
   IframeResize();
@@ -230,7 +231,14 @@ function StopAudio(element) {
   });
 }
 
+function judgeSystem() {
+  if (navigator.userAgent.match(/android/i)) {
+    $(".fullscreen-collapse.in").removeAttr("style");
+  }
+}
+
 var Init = function(host) {
+  judgeSystem();
   FillQueryString();
   var query =
     "year=" +
