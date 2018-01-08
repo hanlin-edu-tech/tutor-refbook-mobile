@@ -288,8 +288,8 @@ var Init = function(host) {
         preElement = event.target;
       });
 
-      $(".wrapper button").on("click", playFullscreen);
       if (navigator.userAgent.match(/android/i)) {
+        $(".wrapper button").on("click", playFullscreen);
         $(".dataRow.videoRow").on("click", function(event) {
           let youtubeId = event.target.getAttribute("data-resourceIds");
           let fullscreenBtn = $("tr.fullscreen-tr");
