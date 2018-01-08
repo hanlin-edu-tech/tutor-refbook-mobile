@@ -280,7 +280,6 @@ var Init = function(host) {
           Move();
         }
       }
-      judgeSystem();
       IframeResize();
       $(document).on("collpase", function(event) {
         if (!(event.target === preElement)) {
@@ -290,35 +289,61 @@ var Init = function(host) {
       });
 
       $(".wrapper button").on("click", playFullscreen);
-      $(".dataRow.videoRow").on("click", function(event) {
-        let youtubeId = event.target.getAttribute("data-resourceIds");
-        let thisBtnTarget = $(event.currentTarget)
-          .parents("tr")
-          .next("tr.fullscreen-tr")
-          .removeAttr("style");
-        onYouTubeIframeAPIReady(youtubeId);
-      });
+      if (navigator.userAgent.match(/iphone/i)) {
+        $(".dataRow.videoRow").on("click", function(event) {
+          let youtubeId = event.target.getAttribute("data-resourceIds");
+          let fullscreenBtn = $("tr.fullscreen-tr");
+          let thisBtnTarget = $(event.currentTarget)
+            .parents("tr")
+            .next("tr.fullscreen-tr");
+          if (thisBtnTarget.css("display") === "none") {
+            fullscreenBtn.hide();
+            thisBtnTarget.css("display", "");
+          } else {
+            thisBtnTarget.css("display", "none");
+          }
 
-      function onYouTubeIframeAPIReady(youtubeId) {
-        let player = new YT.Player(youtubeId, {
-          videoId: youtubeId
+          onYouTubeIframeAPIReady(youtubeId);
         });
-      }
 
-      function playFullscreen(event) {
-        let youtubeId = $(event.currentTarget)
-          .parents("tr.fullscreen-tr")
-          .prev("tr")
-          .find(".dataRow.videoRow")
-          .attr("data-resourceids");
+        function onYouTubeIframeAPIReady(youtubeId) {
+          let player = new YT.Player(youtubeId, { videoId: youtubeId });
+        }
 
-        let iframe = document.querySelector(`#${youtubeId}`);
-        var requestFullScreen =
-          iframe.requestFullScreen ||
-          iframe.mozRequestFullScreen ||
-          iframe.webkitRequestFullScreen;
-        if (requestFullScreen) {
-          requestFullScreen.bind(iframe)();
+        function playFullscreen(event) {
+          let youtubeId = $(event.currentTarget)
+            .parents("tr.fullscreen-tr")
+            .prev("tr")
+            .find(".dataRow.videoRow")
+            .attr("data-resourceids");
+
+          let iframe = document.querySelector(`#${youtubeId}`);
+          var requestFullScreen =
+            iframe.requestFullScreen ||
+            iframe.mozRequestFullScreen ||
+            iframe.webkitRequestFullScreen;
+          if (requestFullScreen) {
+            requestFullScreen.bind(iframe)();
+          }
+        }
+      } else if (true) {
+        $(".dataRow.videoRow").on("click", function(event) {
+          let youtubeId = event.target.getAttribute("data-resourceIds");
+          onYouTubeIframeAPIReady(youtubeId);
+        });
+
+        function onYouTubeIframeAPIReady(youtubeId) {
+          let player = new YT.Player(youtubeId, { videoId: youtubeId });
+        }
+
+        function playFullscreen(event) {
+          var requestFullScreen =
+            iframe.requestFullScreen ||
+            iframe.mozRequestFullScreen ||
+            iframe.webkitRequestFullScreen;
+          if (requestFullScreen) {
+            requestFullScreen.bind(iframe)();
+          }
         }
       }
     },
