@@ -289,7 +289,7 @@ var Init = function(host) {
       });
 
       $(".wrapper button").on("click", playFullscreen);
-      if (navigator.userAgent.match(/iphone/i)) {
+      if (navigator.userAgent.match(/android/i)) {
         $(".dataRow.videoRow").on("click", function(event) {
           let youtubeId = event.target.getAttribute("data-resourceIds");
           let fullscreenBtn = $("tr.fullscreen-tr");
@@ -326,7 +326,7 @@ var Init = function(host) {
             requestFullScreen.bind(iframe)();
           }
         }
-      } else if (true) {
+      } else {
         $(".dataRow.videoRow").on("click", function(event) {
           let youtubeId = event.target.getAttribute("data-resourceIds");
           onYouTubeIframeAPIReady(youtubeId);
