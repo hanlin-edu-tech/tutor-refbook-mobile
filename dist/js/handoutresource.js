@@ -173,7 +173,6 @@ function IframeResize() {
 function Collapse() {
   var sender = $(this);
   var target = $(sender.attr("data-target"));
-  $(".fullscreen-collapse").toggleClass("in");
   target.toggleClass("in");
   sender.trigger("collpase", sender);
   IframeResize();
@@ -232,17 +231,12 @@ function StopAudio(element) {
 }
 
 function judgeSystem() {
-  console.log(navigator.userAgent);
-  alert(navigator.userAgent);
-
-  if (navigator.userAgent.match(/Android/i)) {
-    alert("xxxxx");
-    $(".fullscreen-collapse.in").removeAttr("style");
+  if (navigator.userAgent.match(/iphone/i)) {
+    $(".fullscreen-tr").removeAttr("style");
   }
 }
 
 var Init = function(host) {
-  judgeSystem();
   FillQueryString();
   var query =
     "year=" +
@@ -286,6 +280,7 @@ var Init = function(host) {
           Move();
         }
       }
+      judgeSystem();
       IframeResize();
       $(document).on("collpase", function(event) {
         if (!(event.target === preElement)) {
@@ -297,6 +292,10 @@ var Init = function(host) {
       $(".wrapper button").on("click", playFullscreen);
       $(".dataRow.videoRow").on("click", function(event) {
         let youtubeId = event.target.getAttribute("data-resourceIds");
+        let thisBtnTarget = $(event.currentTarget)
+          .parents("tr")
+          .next("tr.fullscreen-tr")
+          .removeAttr("style");
         onYouTubeIframeAPIReady(youtubeId);
       });
 
@@ -304,12 +303,12 @@ var Init = function(host) {
         let player = new YT.Player(youtubeId, {
           videoId: youtubeId
         });
-        console.log(youtubeId);
       }
 
       function playFullscreen(event) {
         let youtubeId = $(event.currentTarget)
-          .parents("tr")
+          .parents("tr.fullscreen-tr")
+          .prev("tr")
           .find(".dataRow.videoRow")
           .attr("data-resourceids");
 

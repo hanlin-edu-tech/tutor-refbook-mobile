@@ -51,16 +51,18 @@
                                 data-parentgroup="#tbody${dataVal.tbodyIndex}">
                                 ${val.resourceName}
                             </td>
-                            <td class="fullscreen-collapse in" style="display:none;">
-                                <div class="wrapper">
-                                    <button type="button">全螢幕觀看</button>
-                                </div>
-                            </td>
                             {{else}}
                                 <td id="${val.qRcode}" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
                                     ${val.resourceName} ${val.resourceDescription}
                                 </td>
                                 {{/if}}
+                        </tr>
+                        <tr class="fullscreen-tr" style="display:none;">
+                            <td>
+                                <div class="wrapper">
+                                    <button type="button">全螢幕觀看</button>
+                                </div>
+                            </td>
                         </tr>
                         {{/each}}
                     </tbody>
