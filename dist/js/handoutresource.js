@@ -232,7 +232,11 @@ function StopAudio(element) {
 }
 
 function judgeSystem() {
-  if (navigator.userAgent.match(/android/i)) {
+  console.log(navigator.userAgent);
+  alert(navigator.userAgent);
+
+  if (navigator.userAgent.match(/Android/i)) {
+    alert("xxxxx");
     $(".fullscreen-collapse.in").removeAttr("style");
   }
 }
