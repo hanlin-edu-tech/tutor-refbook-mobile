@@ -290,17 +290,16 @@ var Init = function(host) {
 
       function onYouTubeIframeAPIReady(youtubeId) {
         let player = new YT.Player(youtubeId, {
-          height: "100%",
-          width: "100%",
           videoId: youtubeId
         });
+        console.log(youtubeId);
       }
 
       function playFullscreen(event) {
         let youtubeId = $(event.currentTarget)
           .parents("tr")
           .find(".dataRow.videoRow")
-          .attr("data-resourceIds");
+          .attr("data-resourceids");
 
         let iframe = document.querySelector(`#${youtubeId}`);
         var requestFullScreen =
