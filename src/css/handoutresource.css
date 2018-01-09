@@ -41,9 +41,11 @@
 }
 
 .table .wrapper button {
+  margin-left: 0.5%;
+  margin-right: 0.5%;
   height: 100%;
-  width: 60%;
-  font-size: 50px;
+  width: 70%;
+  font-size: 60px;
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 10px;
   outline: none;

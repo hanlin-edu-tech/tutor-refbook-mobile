@@ -288,14 +288,18 @@ var Init = function(host) {
         preElement = event.target;
       });
 
-      if (navigator.userAgent.match(/android/i)) {
-        $(".wrapper button").on("click", playFullscreen);
+      if (true) {
+        $(".wrapper .fullscreen-button").on("click", playFullscreen);
         $(".dataRow.videoRow").on("click", function(event) {
+          let player = new YT.Player(youtubeId, {
+            videoId: youtubeId
+          });
           let youtubeId = event.target.getAttribute("data-resourceIds");
           let fullscreenBtn = $("tr.fullscreen-tr");
           let thisBtnTarget = $(event.currentTarget)
             .parents("tr")
             .next("tr.fullscreen-tr");
+          player.stopVideo();
           if (thisBtnTarget.css("display") === "none") {
             fullscreenBtn.hide();
             thisBtnTarget.css("display", "");
@@ -308,7 +312,17 @@ var Init = function(host) {
 
         function onYouTubeIframeAPIReady(youtubeId) {
           let player = new YT.Player(youtubeId, { videoId: youtubeId });
-          player.StopVideo();
+          let iframe = document.querySelector(`#${youtubeId}`);
+          console.log(iframe);
+          $(".wrapper .pause-button").on("click", function() {
+            player.pauseVideo();
+          });
+          $(".wrapper .stop-button").on("click", function() {
+            player.stopVideo();
+          });
+          $(".wrapper .play-button").on("click", function() {
+            player.playVideo();
+          });
         }
 
         function playFullscreen(event) {
@@ -335,7 +349,6 @@ var Init = function(host) {
 
         function onYouTubeIframeAPIReady(youtubeId) {
           let player = new YT.Player(youtubeId, { videoId: youtubeId });
-          player.StopVideo();
         }
 
         function playFullscreen(event) {
