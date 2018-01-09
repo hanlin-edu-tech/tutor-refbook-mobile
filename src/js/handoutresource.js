@@ -310,6 +310,9 @@ var Init = function(host) {
           $(".dataRow.videoRow").on("click", function() {
             player.stopVideo();
           });
+          $(".dataRow.panel").on("click", function() {
+            player.stopVideo();
+          });
         }
 
         function playFullscreen(event) {
