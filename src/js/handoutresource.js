@@ -307,17 +307,6 @@ var Init = function(host) {
 
         function onYouTubeIframeAPIReady(youtubeId) {
           let player = new YT.Player(youtubeId, { videoId: youtubeId });
-          let iframe = document.querySelector(`#${youtubeId}`);
-          console.log(iframe);
-          $(".wrapper .pause-button").on("click", function() {
-            player.pauseVideo();
-          });
-          $(".wrapper .stop-button").on("click", function() {
-            player.stopVideo();
-          });
-          $(".wrapper .play-button").on("click", function() {
-            player.playVideo();
-          });
           $(".dataRow.videoRow").on("click", function() {
             player.stopVideo();
           });
