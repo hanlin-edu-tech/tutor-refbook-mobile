@@ -308,6 +308,7 @@ var Init = function(host) {
 
         function onYouTubeIframeAPIReady(youtubeId) {
           let player = new YT.Player(youtubeId, { videoId: youtubeId });
+          player.StopVideo();
         }
 
         function playFullscreen(event) {
@@ -334,6 +335,7 @@ var Init = function(host) {
 
         function onYouTubeIframeAPIReady(youtubeId) {
           let player = new YT.Player(youtubeId, { videoId: youtubeId });
+          player.StopVideo();
         }
 
         function playFullscreen(event) {
