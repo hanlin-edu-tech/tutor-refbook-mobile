@@ -288,16 +288,8 @@ var Init = function(host) {
         preElement = event.target;
       });
 
-      if (true) {
+      if (navigator.userAgent.match(/android/i)) {
         $(".wrapper .fullscreen-button").on("click", playFullscreen);
-        $(".dataRow.videoRow").on("click", function() {
-          console.log("you click .dataRow.videoRow");
-          stopYoutubeVideo();
-        });
-        $(".dataRow.panel").on("click", function() {
-          console.log("you click .dataRow.panel");
-          stopYoutubeVideo();
-        });
         $(".dataRow.videoRow").on("click", function(event) {
           let youtubeId = event.target.getAttribute("data-resourceIds");
           let fullscreenBtn = $("tr.fullscreen-tr");
@@ -310,17 +302,22 @@ var Init = function(host) {
           } else {
             thisBtnTarget.css("display", "none");
           }
-          // onYouTubeIframeAPIReady(youtubeId);
+
+          onYouTubeIframeAPIReady(youtubeId);
         });
 
-        // function onYouTubeIframeAPIReady(youtubeId) {
-        //   let player = new YT.Player(youtubeId, { videoId: youtubeId });
-        // }
+        function onYouTubeIframeAPIReady(youtubeId) {
+          let player = new YT.Player(youtubeId, {
+            videoId: youtubeId
+          });
 
-        function stopYoutubeVideo(youtubeId) {
-          let player = new YT.Player(youtubeId, { videoId: youtubeId });
-          console.log("stopYoutubeVideo ===> " + youtubeId);
-          player.stopVideo();
+          $(".dataRow.videoRow").on("click", function() {
+            player.stopVideo();
+          });
+
+          $(".dataRow.panel").on("click", function() {
+            player.stopVideo();
+          });
         }
 
         function playFullscreen(event) {
@@ -346,7 +343,9 @@ var Init = function(host) {
         });
 
         function onYouTubeIframeAPIReady(youtubeId) {
-          let player = new YT.Player(youtubeId, { videoId: youtubeId });
+          let player = new YT.Player(youtubeId, {
+            videoId: youtubeId
+          });
         }
 
         function playFullscreen(event) {
