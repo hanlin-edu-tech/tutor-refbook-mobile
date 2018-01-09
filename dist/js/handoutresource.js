@@ -291,22 +291,17 @@ var Init = function(host) {
       if (true) {
         $(".wrapper .fullscreen-button").on("click", playFullscreen);
         $(".dataRow.videoRow").on("click", function(event) {
-          let player = new YT.Player(youtubeId, {
-            videoId: youtubeId
-          });
           let youtubeId = event.target.getAttribute("data-resourceIds");
           let fullscreenBtn = $("tr.fullscreen-tr");
           let thisBtnTarget = $(event.currentTarget)
             .parents("tr")
             .next("tr.fullscreen-tr");
-          player.stopVideo();
           if (thisBtnTarget.css("display") === "none") {
             fullscreenBtn.hide();
             thisBtnTarget.css("display", "");
           } else {
             thisBtnTarget.css("display", "none");
           }
-
           onYouTubeIframeAPIReady(youtubeId);
         });
 
@@ -322,6 +317,9 @@ var Init = function(host) {
           });
           $(".wrapper .play-button").on("click", function() {
             player.playVideo();
+          });
+          $(".dataRow.videoRow").on("click", function() {
+            player.stopVideo();
           });
         }
 
