@@ -1,7 +1,9 @@
-require(["jquery"], function($) {
+"use strict";
+
+define(["jquery", "ajaxGet", "jqueryTemplate"], function ($, ajaxGet) {
   var urlParams = {};
   var preElement = {};
-  const tablePrefix = "tb";
+  var tablePrefix = "tb";
   var qrcodeLists = [];
 
   function Clickvideo() {
@@ -46,7 +48,7 @@ require(["jquery"], function($) {
     var temp = $("#pdf-template").tmpl({
       data: data
     });
-    temp.find("a").on("click", function(e) {
+    temp.find("a").on("click", function (e) {
       e.stopPropagation();
     });
     temp.appendTo(this);
@@ -75,9 +77,7 @@ require(["jquery"], function($) {
     if (returnData.resourceIds) {
       returnData.resourceIds = returnData.resourceIds.split(",");
     }
-    returnData.id = $(data)
-      .attr("data-target")
-      .substring(1);
+    returnData.id = $(data).attr("data-target").substring(1);
     if (location.hash) {
       returnData.hash = location.hash.substring(1);
     }
@@ -146,11 +146,7 @@ require(["jquery"], function($) {
   }
 
   function ProcressData(element, index, array) {
-    element.resources = element.resources.filter(function(
-      resource,
-      index,
-      array
-    ) {
+    element.resources = element.resources.filter(function (resource, index, array) {
       return resource.visible;
     });
     element.resources.forEach(FillIconInternal);
@@ -181,13 +177,14 @@ require(["jquery"], function($) {
 
   function FillQueryString() {
     var e,
-      a = /\+/g, // Regex for replacing addition symbol with a space
-      r = /([^&=]+)=?([^&]*)/g,
-      d = function(s) {
-        return decodeURIComponent(s.replace(a, " "));
-      },
-      q = window.location.search.substring(1);
-    while ((e = r.exec(q))) {
+        a = /\+/g,
+        // Regex for replacing addition symbol with a space
+    r = /([^&=]+)=?([^&]*)/g,
+        d = function d(s) {
+      return decodeURIComponent(s.replace(a, " "));
+    },
+        q = window.location.search.substring(1);
+    while (e = r.exec(q)) {
       urlParams[d(e[1])] = d(e[2]);
     }
   }
@@ -195,14 +192,8 @@ require(["jquery"], function($) {
   function ProcressTrigger(sender) {
     var pre = $(preElement);
     var sen = $(sender);
-    if (
-      sen.attr("data-parentgroup") &&
-      pre.attr("data-parentgroup") &&
-      sen.attr("data-parentgroup") !== pre.attr("data-parentgroup")
-    ) {
-      var parentElement = document.getElementById(
-        pre.attr("data-parentgroup").substring(1)
-      );
+    if (sen.attr("data-parentgroup") && pre.attr("data-parentgroup") && sen.attr("data-parentgroup") !== pre.attr("data-parentgroup")) {
+      var parentElement = document.getElementById(pre.attr("data-parentgroup").substring(1));
       $(parentElement).removeClass("in");
     }
     pre.find("div").removeClass("in");
@@ -216,162 +207,128 @@ require(["jquery"], function($) {
   }
 
   function StopYoutube(element) {
-    element.find(".youtube_player_iframe").each(function() {
-      this.contentWindow.postMessage(
-        '{"event":"command","func":"' + "stopVideo" + '","args":""}',
-        "*"
-      );
+    element.find(".youtube_player_iframe").each(function () {
+      this.contentWindow.postMessage('{"event":"command","func":"' + "stopVideo" + '","args":""}', "*");
     });
   }
 
   function StopAudio(element) {
-    element.find("audio").each(function() {
+    element.find("audio").each(function () {
       this.pause();
       this.currentTime = 0;
     });
   }
 
-  function judgeSystem() {
-    if (navigator.userAgent.match(/iphone/i)) {
-      $(".fullscreen-tr").removeAttr("style");
-    }
-  }
-
-  var Init = function(host) {
+  var init = function init() {
     FillQueryString();
-    var query =
-      "year=" +
-      urlParams["year"] +
-      "&type=" +
-      urlParams["type"] +
-      "&subject=" +
-      urlParams["subject"];
-    ajaxGet(
-      "/handoutresource" + "/api/Find?" + query,
-      // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=橘子複習講義&subject=pc",
-      null,
-      function(data) {
-        console.log(data);
+    var query = "year=" + urlParams["year"] + "&type=" + urlParams["type"] + "&subject=" + urlParams["subject"];
+    ajaxGet("/handoutresource" + "/api/Find?" + query,
+    // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=橘子複習講義&subject=pc",
+    null, function (data) {
+      console.log(data);
 
-        if (!data[0].resources.length) {
-          var img =
-            '<img style="max-width: 100%; height:auto;" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/img/%E6%95%AC%E8%AB%8B%E6%9C%9F%E5%BE%85.jpg">';
-          $(img)
-            .load(IframeResize)
-            .appendTo($("#div_demo"));
-        } else {
-          data.forEach(ProcressData);
-          var parentHash = 0;
-          if (location.hash) {
-            parentHash = location.hash.split("_")[0].substring(1);
-          }
-          var temp = $("#resource").tmpl({
-            data: data,
-            parentHash: parentHash
-          });
-          temp.on("click", "tr[data-target]", Collapse);
-          temp.on("click", "td[data-target]", Collapse);
-          temp.appendTo("#div_demo");
-          $("#div_demo .videoRow").one("click", Clickvideo);
-          $("#div_demo .pngRow").one("click", Clickpng);
-          $("#div_demo .pdfRow").one("click", Clickpdf);
-          $("#div_demo .mp3Row").one("click", Clickmp3);
-          $("#div_demo .commingSoon").one("click", ClickCommingSoon);
-          if (location.hash) {
-            Move();
-          }
+      if (!data[0].resources.length) {
+        var img = '<img style="max-width: 100%; height:auto;" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/img/%E6%95%AC%E8%AB%8B%E6%9C%9F%E5%BE%85.jpg">';
+        $(img).load(IframeResize).appendTo($("#div_demo"));
+      } else {
+        data.forEach(ProcressData);
+        var parentHash = 0;
+        if (location.hash) {
+          parentHash = location.hash.split("_")[0].substring(1);
         }
-        IframeResize();
-        $(document).on("collpase", function(event) {
-          if (!(event.target === preElement)) {
-            ProcressTrigger(event.target);
-          }
-          preElement = event.target;
+        var temp = $("#resource").tmpl({
+          data: data,
+          parentHash: parentHash
         });
-
-        if (navigator.userAgent.match(/android/i)) {
-          $(".wrapper .fullscreen-button").on("click", playFullscreen);
-          $(".dataRow.videoRow").on("click", function(event) {
-            let youtubeId = event.target.getAttribute("data-resourceIds");
-            let fullscreenBtn = $("tr.fullscreen-tr");
-            let thisBtnTarget = $(event.currentTarget)
-              .parents("tr")
-              .next("tr.fullscreen-tr");
-            if (thisBtnTarget.css("display") === "none") {
-              fullscreenBtn.hide();
-              thisBtnTarget.css("display", "");
-            } else {
-              thisBtnTarget.css("display", "none");
-            }
-
-            onYouTubeIframeAPIReady(youtubeId);
-          });
-
-          function onYouTubeIframeAPIReady(youtubeId) {
-            let player = new YT.Player(youtubeId, {
-              videoId: youtubeId
-            });
-
-            $(".dataRow.videoRow").on("click", function() {
-              player.stopVideo();
-            });
-
-            $(".dataRow.panel").on("click", function() {
-              player.stopVideo();
-            });
-          }
-
-          function playFullscreen(event) {
-            let youtubeId = $(event.currentTarget)
-              .parents("tr.fullscreen-tr")
-              .prev("tr")
-              .find(".dataRow.videoRow")
-              .attr("data-resourceids");
-
-            let iframe = document.querySelector(`#${youtubeId}`);
-            var requestFullScreen =
-              iframe.requestFullScreen ||
-              iframe.mozRequestFullScreen ||
-              iframe.webkitRequestFullScreen;
-            if (requestFullScreen) {
-              requestFullScreen.bind(iframe)();
-            }
-          }
-        } else {
-          $(".dataRow.videoRow").on("click", function(event) {
-            let youtubeId = event.target.getAttribute("data-resourceIds");
-            onYouTubeIframeAPIReady(youtubeId);
-          });
-
-          function onYouTubeIframeAPIReady(youtubeId) {
-            let player = new YT.Player(youtubeId, {
-              videoId: youtubeId
-            });
-            player.stopVideo();
-
-            $(".dataRow.videoRow").on("click", function() {
-              player.stopVideo();
-            });
-
-            $(".dataRow.panel").on("click", function() {
-              player.stopVideo();
-            });
-          }
-
-          function playFullscreen(event) {
-            var requestFullScreen =
-              iframe.requestFullScreen ||
-              iframe.mozRequestFullScreen ||
-              iframe.webkitRequestFullScreen;
-            if (requestFullScreen) {
-              requestFullScreen.bind(iframe)();
-            }
-          }
+        temp.on("click", "tr[data-target]", Collapse);
+        temp.on("click", "td[data-target]", Collapse);
+        temp.appendTo("#div_demo");
+        $("#div_demo .videoRow").one("click", Clickvideo);
+        $("#div_demo .pngRow").one("click", Clickpng);
+        $("#div_demo .pdfRow").one("click", Clickpdf);
+        $("#div_demo .mp3Row").one("click", Clickmp3);
+        $("#div_demo .commingSoon").one("click", ClickCommingSoon);
+        if (location.hash) {
+          Move();
         }
-      },
-      function(data) {
-        console.log("errorData: " + data);
       }
-    );
+      IframeResize();
+      $(document).on("collpase", function (event) {
+        if (!(event.target === preElement)) {
+          ProcressTrigger(event.target);
+        }
+        preElement = event.target;
+      });
+
+      if (navigator.userAgent.match(/android/i)) {
+        var onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady(youtubeId) {
+          var player = new YT.Player(youtubeId, {
+            videoId: youtubeId
+          });
+
+          $(".dataRow.videoRow").on("click", function () {
+            player.stopVideo();
+          });
+
+          $(".dataRow.panel").on("click", function () {
+            player.stopVideo();
+          });
+        };
+
+        var playFullscreen = function playFullscreen(event) {
+          var youtubeId = $(event.currentTarget).parents("tr.fullscreen-tr").prev("tr").find(".dataRow.videoRow").attr("data-resourceids");
+
+          var iframe = document.querySelector("#" + youtubeId);
+          var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+          if (requestFullScreen) {
+            requestFullScreen.bind(iframe)();
+          }
+        };
+
+        $(".wrapper .fullscreen-button").on("click", playFullscreen);
+        $(".dataRow.videoRow").on("click", function (event) {
+          var youtubeId = event.target.getAttribute("data-resourceIds");
+          var fullscreenBtn = $("tr.fullscreen-tr");
+          var thisBtnTarget = $(event.currentTarget).parents("tr").next("tr.fullscreen-tr");
+          if (thisBtnTarget.css("display") === "none") {
+            fullscreenBtn.hide();
+            thisBtnTarget.css("display", "");
+          } else {
+            thisBtnTarget.css("display", "none");
+          }
+
+          onYouTubeIframeAPIReady(youtubeId);
+        });
+      } else {
+        var _onYouTubeIframeAPIReady = function _onYouTubeIframeAPIReady(youtubeId) {
+          var player = new YT.Player(youtubeId, {
+            videoId: youtubeId
+          });
+
+          $(".dataRow.videoRow").on("click", function () {
+            player.stopVideo();
+          });
+
+          $(".dataRow.panel").on("click", function () {
+            player.stopVideo();
+          });
+        };
+
+        var _playFullscreen = function _playFullscreen(event) {
+          var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
+          if (requestFullScreen) {
+            requestFullScreen.bind(iframe)();
+          }
+        };
+
+        $(".dataRow.videoRow").on("click", function (event) {
+          var youtubeId = event.target.getAttribute("data-resourceIds");
+          _onYouTubeIframeAPIReady(youtubeId);
+        });
+      }
+    }, function (data) {
+      console.log("errorData: " + data);
+    });
   };
+  init();
 });

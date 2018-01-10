@@ -1,4 +1,4 @@
-require(["jquery"], function($) {
+define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
   var urlParams = {};
   var preElement = {};
   const tablePrefix = "tb";
@@ -231,13 +231,7 @@ require(["jquery"], function($) {
     });
   }
 
-  function judgeSystem() {
-    if (navigator.userAgent.match(/iphone/i)) {
-      $(".fullscreen-tr").removeAttr("style");
-    }
-  }
-
-  var Init = function(host) {
+  var init = function() {
     FillQueryString();
     var query =
       "year=" +
@@ -347,7 +341,6 @@ require(["jquery"], function($) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
             });
-            player.stopVideo();
 
             $(".dataRow.videoRow").on("click", function() {
               player.stopVideo();
@@ -374,4 +367,5 @@ require(["jquery"], function($) {
       }
     );
   };
+  init();
 });

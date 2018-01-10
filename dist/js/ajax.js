@@ -1,7 +1,7 @@
 /**
  * Http Get by ajax
  */
-require(["jquery"], function($) {
+define(["jquery"], function($) {
   var ajaxGet = function(url, param, success, error) {
     return $.ajax({
       type: "GET",
@@ -15,4 +15,5 @@ require(["jquery"], function($) {
       error: error
     });
   };
+  return ajaxGet;
 });
