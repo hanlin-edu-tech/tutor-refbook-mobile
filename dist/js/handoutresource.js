@@ -346,6 +346,7 @@ var Init = function(host) {
           let player = new YT.Player(youtubeId, {
             videoId: youtubeId
           });
+          player.stopVideo();
 
           $(".dataRow.videoRow").on("click", function() {
             player.stopVideo();
