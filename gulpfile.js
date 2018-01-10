@@ -74,9 +74,12 @@ function cleanTask() {
 
 gulp.task("lib", libTask("src/lib"));
 gulp.task("build", ["style", "lib"]);
-
 gulp.task("js", function() {
-  return gulp.src("src/js/*.js").pipe(babel());
+  console.log("===> babel <===");
+  return gulp
+    .src("src/js/handoutresource.js", { base: "src" })
+    .pipe(babel({ presets: ["es2015"] }))
+    .pipe(gulp.dest("dist"));
 });
 
 gulp.task("package", function() {
