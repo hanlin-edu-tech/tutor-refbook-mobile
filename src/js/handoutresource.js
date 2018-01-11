@@ -241,8 +241,8 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
       "&subject=" +
       urlParams["subject"];
     ajaxGet(
-      "/handoutresource" + "/api/Find?" + query,
-      // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=橘子複習講義&subject=pc",
+      // "/handoutresource" + "/api/Find?" + query,
+      "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=橘子複習講義&subject=pc",
       null,
       function(data) {
         console.log(data);

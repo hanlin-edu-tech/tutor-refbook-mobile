@@ -7,6 +7,7 @@ var path = require("path");
 var Q = require("q");
 var util = require("gulp-template-util");
 var babel = require("gulp-babel");
+var replace = require("gulp-replace");
 
 function buildStyle() {
   return es.map(function(file, cb) {
@@ -68,14 +69,31 @@ function copyStaticTask(dest) {
   };
 }
 
+function buildEnvToDevModule() {
+  console.log("======> buildEnvToDevModule <======");
+  gulp.src(["src/index.html"], { base: "src" }).pipe(
+    replace(/\/(event-collection_107)\/(\d\.\d\.\d{2}\-\w+)/g, function(
+      match,
+      p1,
+      p2
+    ) {
+      let changeTag = gulp.env.tag;
+      console.log(match);
+      console.log("p1 = " + p1);
+      console.log("p2 = " + p2);
+      console.log("-------> " + changeTag + " <--------");
+      return `${p1}/${changeTag}`;
+    }).pipe(gulp.dest("dist"))
+  );
+}
+
 function cleanTask() {
   return del(["dist", ""]);
 }
 
 gulp.task("lib", libTask("src/lib"));
-gulp.task("build", ["style", "lib"]);
+gulp.task("changePath", buildEnvToDevModule());
 gulp.task("js", function() {
-  console.log("===> babel <===");
   return gulp
     .src("src/js/handoutresource.js", { base: "src" })
     .pipe(babel({ presets: ["es2015"] }))
