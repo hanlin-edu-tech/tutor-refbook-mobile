@@ -71,20 +71,19 @@ function copyStaticTask(dest) {
 
 function buildEnvToDevModule() {
   console.log("======> buildEnvToDevModule <======");
-  gulp.src(["src/index.html"], { base: "src" }).pipe(
-    replace(/\/(event-collection_107)\/(\d\.\d\.\d{2}\-\w+)/g, function(
-      match,
-      p1,
-      p2
-    ) {
-      let changeTag = gulp.env.tag;
-      console.log(match);
-      console.log("p1 = " + p1);
-      console.log("p2 = " + p2);
-      console.log("-------> " + changeTag + " <--------");
-      return `${p1}/${changeTag}`;
-    }).pipe(gulp.dest("dist"))
-  );
+  return gulp
+    .src(["src/index.html"], { base: "src" })
+    .pipe(
+      replace(/\/(event-collection_107)\/(\d\.\d\.\d{2}\-\w+)/g, function(
+        match,
+        p1,
+        p2
+      ) {
+        let changeTag = gulp.env.tag;
+        return `/${p1}/${changeTag}`;
+      })
+    )
+    .pipe(gulp.dest("dist"));
 }
 
 function cleanTask() {
@@ -92,7 +91,7 @@ function cleanTask() {
 }
 
 gulp.task("lib", libTask("src/lib"));
-gulp.task("changePath", buildEnvToDevModule());
+gulp.task("changePath", buildEnvToDevModule);
 gulp.task("js", function() {
   return gulp
     .src("src/js/handoutresource.js", { base: "src" })
