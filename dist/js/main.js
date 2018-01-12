@@ -5,7 +5,7 @@ require.config({
     }
   },
 
-  baseUrl: "js",
+ //baseUrl: "/js",
   paths: {
     jquery: "../lib/jquery/jquery-1.7.2.min",
     jqueryTemplate: "../lib/jquery/jquery.tmpl",
