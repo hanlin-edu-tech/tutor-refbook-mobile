@@ -27,6 +27,7 @@
     "block-ui": "2.70.1",
     "fs": "0.0.1-security",
     "gulp-babel": "^7.0.0",
+    "gulp-connect": "^5.2.0",
     "jquery": "^1.11.0",
     "moment": "2.13.0",
     "underscore": "1.8.3"

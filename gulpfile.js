@@ -8,6 +8,7 @@ var Q = require("q");
 var util = require("gulp-template-util");
 var babel = require("gulp-babel");
 var replace = require("gulp-replace");
+var connect = require("gulp-connect");
 
 function buildStyle() {
   return es.map(function(file, cb) {
@@ -69,19 +70,45 @@ function copyStaticTask(dest) {
   };
 }
 
-function buildEnvToDevModule() {
-  console.log("======> buildEnvToDevModule <======");
+function changeTagURL() {
   return gulp
     .src(["src/index.html"], { base: "src" })
     .pipe(
       replace(/\/(event-collection_107)\/(\d\.\d\.\d{2}\-\w+)/g, function(
         match,
-        p1,
-        p2
+        p1
       ) {
         let changeTag = gulp.env.tag;
         return `/${p1}/${changeTag}`;
       })
+    )
+    .pipe(gulp.dest("src"));
+}
+
+function testChangeToDevS3URL() {
+  var url =
+    "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/";
+  return gulp
+    .src(["src/index.html"], { base: "src" })
+    .pipe(replace(url, ""))
+    .pipe(gulp.dest("src"));
+}
+
+function testChangeTag() {
+  return gulp
+    .src(["src/index.html"], { base: "src" })
+    .pipe(replace(/(\d\.\d\.\d{2}\-\w+)/g, "./"))
+    .pipe(gulp.dest("src"));
+}
+
+function devChangeToTestURL() {
+  return gulp
+    .src(["src/index.html"], { base: "src" })
+    .pipe(
+      replace(
+        "./js",
+        "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/0.0.11-SNAPSHOT/js"
+      )
     )
     .pipe(gulp.dest("src"));
 }
@@ -91,7 +118,10 @@ function cleanTask() {
 }
 
 gulp.task("lib", libTask("src/lib"));
-gulp.task("changePath", buildEnvToDevModule);
+gulp.task("changeTagURL", changeTagURL);
+gulp.task("testChangeToDevS3URL", testChangeToDevS3URL);
+gulp.task("testChangeTag", testChangeTag);
+gulp.task("devChangeToTestURL", devChangeToTestURL);
 gulp.task("js", function() {
   return gulp
     .src("src/js/handoutresource.js", { base: "src" })
