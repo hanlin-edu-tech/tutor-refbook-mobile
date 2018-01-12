@@ -83,7 +83,7 @@ function buildEnvToDevModule() {
         return `/${p1}/${changeTag}`;
       })
     )
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest("src"));
 }
 
 function cleanTask() {
