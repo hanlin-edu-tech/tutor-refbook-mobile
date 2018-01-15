@@ -241,8 +241,8 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
       "&subject=" +
       urlParams["subject"];
     ajaxGet(
-      "/handoutresource" + "/api/Find?" + query,
-      // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=橘子複習講義&subject=pc",
+      // "/handoutresource" + "/api/Find?" + query,
+      "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=橘子複習講義&subject=pc",
       null,
       function(data) {
         console.log(data);
@@ -333,10 +333,10 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
         } else {
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
-            let iframe = document.querySelector(`#${youtubeId}`);
+            let iframe = $(this).find("div iframe");
 
-            if (iframe) {
-              var iframeSrc = iframe.src;
+            if (iframe.length === 0 || iframe.length === 1) {
+              let iframeSrc = iframe.src;
               iframe.src = iframeSrc;
             }
 
