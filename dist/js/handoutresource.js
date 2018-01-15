@@ -288,14 +288,21 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
             let fullscreenBtn = $("tr.fullscreen-tr");
+            let iframe = document.querySelector(`#${youtubeId}`);
             let thisBtnTarget = $(event.currentTarget)
               .parents("tr")
               .next("tr.fullscreen-tr");
+
             if (thisBtnTarget.css("display") === "none") {
               fullscreenBtn.hide();
               thisBtnTarget.css("display", "");
             } else {
               thisBtnTarget.css("display", "none");
+            }
+
+            if (iframe) {
+              let iframeSrc = iframe.src;
+              iframe.src = iframeSrc;
             }
 
             onYouTubeIframeAPIReady(youtubeId);
@@ -304,14 +311,6 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           function onYouTubeIframeAPIReady(youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
-            });
-
-            $(".dataRow.videoRow").on("click", function() {
-              player.stopVideo();
-            });
-
-            $(".dataRow.panel").on("click", function() {
-              player.stopVideo();
             });
           }
 
@@ -334,20 +333,19 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
         } else {
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
+            let iframe = document.querySelector(`#${youtubeId}`);
+
+            if (iframe) {
+              var iframeSrc = iframe.src;
+              iframe.src = iframeSrc;
+            }
+
             onYouTubeIframeAPIReady(youtubeId);
           });
 
           function onYouTubeIframeAPIReady(youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
-            });
-
-            // $(".dataRow.videoRow").on("click", function() {
-            //   player.stopVideo();
-            // });
-
-            $(".dataRow.panel").on("click", function() {
-              player.stopVideo();
             });
           }
 

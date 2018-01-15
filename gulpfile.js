@@ -85,7 +85,7 @@ function changeTagURL() {
     .pipe(gulp.dest("src"));
 }
 
-function testChangeToDevS3URL() {
+function testChangeToDevURLFirst() {
   var url =
     "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/";
   return gulp
@@ -94,10 +94,10 @@ function testChangeToDevS3URL() {
     .pipe(gulp.dest("src"));
 }
 
-function testChangeTag() {
+function testChangeToDevURLSecond() {
   return gulp
     .src(["src/index.html"], { base: "src" })
-    .pipe(replace(/(\d\.\d\.\d{2}\-\w+)/g, "./"))
+    .pipe(replace(/(\d\.\d\.\d{2}\-\w+)/g, "."))
     .pipe(gulp.dest("src"));
 }
 
@@ -119,8 +119,8 @@ function cleanTask() {
 
 gulp.task("lib", libTask("src/lib"));
 gulp.task("changeTagURL", changeTagURL);
-gulp.task("testChangeToDevS3URL", testChangeToDevS3URL);
-gulp.task("testChangeTag", testChangeTag);
+gulp.task("testChangeToDevURLFirst", testChangeToDevURLFirst);
+gulp.task("testChangeToDevURLSecond", testChangeToDevURLSecond);
 gulp.task("devChangeToTestURL", devChangeToTestURL);
 gulp.task("js", function() {
   return gulp
