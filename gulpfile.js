@@ -70,7 +70,7 @@ function copyStaticTask(dest) {
   };
 }
 
-function changeTagURL() {
+function changeTag() {
   return gulp
     .src(["src/index.html"], { base: "src" })
     .pipe(
@@ -118,7 +118,7 @@ function cleanTask() {
 }
 
 gulp.task("lib", libTask("src/lib"));
-gulp.task("changeTagURL", changeTagURL);
+gulp.task("changeTag", changeTag);
 gulp.task("testChangeToDevURLFirst", testChangeToDevURLFirst);
 gulp.task("testChangeToDevURLSecond", testChangeToDevURLSecond);
 gulp.task("devChangeToTestURL", devChangeToTestURL);
