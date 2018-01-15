@@ -341,7 +341,6 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
             if (iframe.length === 0 || iframe.length === 1) {
               let iframeSrc = iframe.src;
               iframe.src = iframeSrc;
-              console.log("======");
             }
 
             onYouTubeIframeAPIReady(youtubeId);
