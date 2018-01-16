@@ -329,7 +329,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           // 非 android 系統使用者
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
-            let iframe = $(".dataRow.videoRow").find("div iframe");
+            let iframe = document.querySelector(`#${youtubeId}`);
             let iframeSrc = iframe.src;
             iframe.src = iframeSrc;
 
@@ -339,6 +339,10 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           function onYouTubeIframeAPIReady(youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
+            });
+
+            $(".dataRow.panel").on("click", function() {
+              player.stopVideo();
             });
           }
 
