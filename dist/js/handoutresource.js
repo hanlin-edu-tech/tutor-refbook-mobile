@@ -241,8 +241,8 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
       "&subject=" +
       urlParams["subject"];
     ajaxGet(
-      "/handoutresource" + "/api/Find?" + query,
-      // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=橘子複習講義&subject=pc",
+      // "/handoutresource" + "/api/Find?" + query,
+      "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=橘子複習講義&subject=pc",
       null,
       function(data) {
         console.log(data);
@@ -293,6 +293,10 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
               .parents("tr")
               .next("tr.fullscreen-tr");
 
+            let iframe = document.getElementById(youtubeId);
+            let iframeSrc = iframe.src;
+            iframe.src = iframeSrc;
+
             if (thisBtnTarget.css("display") === "none") {
               fullscreenBtn.hide();
               thisBtnTarget.css("display", "");
@@ -306,6 +310,14 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           function onYouTubeIframeAPIReady(youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
+            });
+
+            $(".dataRow.videoRow").on("click", function() {
+              player.stopVideo();
+            });
+
+            $(".dataRow.panel").on("click", function() {
+              player.stopVideo();
             });
           }
 
@@ -329,7 +341,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           // 非 android 系統使用者
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
-            let iframe = document.querySelector(`#${youtubeId}`);
+            let iframe = document.getElementById(youtubeId);
             let iframeSrc = iframe.src;
             iframe.src = iframeSrc;
 
@@ -339,6 +351,10 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           function onYouTubeIframeAPIReady(youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
+            });
+
+            $(".dataRow.videoRow").on("click", function() {
+              player.stopVideo();
             });
 
             $(".dataRow.panel").on("click", function() {
