@@ -119,9 +119,9 @@ function cleanTask() {
 
 gulp.task("lib", libTask("src/lib"));
 gulp.task("changeTag", changeTag);
-gulp.task("testChangeToDevURLFirst", testChangeToDevURLFirst);
-gulp.task("testChangeToDevURLSecond", testChangeToDevURLSecond);
-gulp.task("devChangeToTestURL", devChangeToTestURL);
+gulp.task("changeDevFirst", testChangeToDevURLFirst);
+gulp.task("changeDevSecond", testChangeToDevURLSecond);
+gulp.task("changeTest", devChangeToTestURL);
 gulp.task("js", function() {
   return gulp
     .src("src/js/handoutresource.js", { base: "src" })

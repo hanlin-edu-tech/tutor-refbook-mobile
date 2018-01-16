@@ -283,12 +283,12 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           preElement = event.target;
         });
 
+        //  android 系統使用者
         if (navigator.userAgent.match(/android/i)) {
           $(".wrapper .fullscreen-button").on("click", playFullscreen);
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
             let fullscreenBtn = $("tr.fullscreen-tr");
-            let iframe = document.querySelector(`#${youtubeId}`);
             let thisBtnTarget = $(event.currentTarget)
               .parents("tr")
               .next("tr.fullscreen-tr");
@@ -298,11 +298,6 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
               thisBtnTarget.css("display", "");
             } else {
               thisBtnTarget.css("display", "none");
-            }
-
-            if (iframe) {
-              let iframeSrc = iframe.src;
-              iframe.src = iframeSrc;
             }
 
             onYouTubeIframeAPIReady(youtubeId);
@@ -331,17 +326,12 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
             }
           }
         } else {
+          // 非 android 系統使用者
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
-            let iframe = document.querySelectorAll(
-              ".dataRow.videoRow div iframe"
-            );
-            console.log(iframe);
-
-            if (iframe.length === 0 || iframe.length === 1) {
-              let iframeSrc = iframe.src;
-              iframe.src = iframeSrc;
-            }
+            let iframe = $(".dataRow.videoRow").find("div iframe");
+            let iframeSrc = iframe.src;
+            iframe.src = iframeSrc;
 
             onYouTubeIframeAPIReady(youtubeId);
           });
