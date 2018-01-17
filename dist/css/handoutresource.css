@@ -65,3 +65,7 @@
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
 }
+
+.dataRow.pngRow img {
+  width: 100%;
+}
