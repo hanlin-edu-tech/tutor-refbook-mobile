@@ -243,6 +243,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     ajaxGet(
       "/handoutresource" + "/api/Find?" + query,
       // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=橘子複習講義&subject=pc",
+      // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=大滿貫複習講義&subject=disen",
       null,
       function(data) {
         console.log(data);
@@ -308,9 +309,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           });
 
           function onYouTubeIframeAPIReady(youtubeId) {
-            let player = new YT.Player(youtubeId, {
-              videoId: youtubeId
-            });
+            let player = new YT.Player(youtubeId, { videoId: youtubeId });
 
             $(".dataRow.videoRow").on("click", function() {
               player.stopVideo();
@@ -349,9 +348,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           });
 
           function onYouTubeIframeAPIReady(youtubeId) {
-            let player = new YT.Player(youtubeId, {
-              videoId: youtubeId
-            });
+            let player = new YT.Player(youtubeId, { videoId: youtubeId });
 
             $(".dataRow.videoRow").on("click", function() {
               player.stopVideo();

@@ -9,6 +9,8 @@ var util = require("gulp-template-util");
 var babel = require("gulp-babel");
 var replace = require("gulp-replace");
 var connect = require("gulp-connect");
+var S3 =
+  "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/";
 
 function buildStyle() {
   return es.map(function(file, cb) {
@@ -85,32 +87,38 @@ function changeTag() {
     .pipe(gulp.dest("src"));
 }
 
-function testChangeToDevURLFirst() {
-  var url =
-    "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/";
+function testChangeToDevURL() {
+  var url = S3 + "(\\d.\\d.\\d{1,2}-\\w+)";
+  var regExp = new RegExp(url, "g");
   return gulp
     .src(["src/index.html"], { base: "src" })
-    .pipe(replace(url, ""))
-    .pipe(gulp.dest("src"));
-}
-
-function testChangeToDevURLSecond() {
-  return gulp
-    .src(["src/index.html"], { base: "src" })
-    .pipe(replace(/(\d\.\d\.\d{2}\-\w+)/g, "."))
+    .pipe(replace(regExp, "."))
     .pipe(gulp.dest("src"));
 }
 
 function devChangeToTestURL() {
   return gulp
     .src(["src/index.html"], { base: "src" })
-    .pipe(
-      replace(
-        "./js",
-        "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/0.0.11-SNAPSHOT/js"
-      )
-    )
+    .pipe(replace("./js", `${S3}${gulp.env.tag}/js`))
     .pipe(gulp.dest("src"));
+}
+
+function testChangeToProduction() {
+  var url = S3 + "(\\d.\\d.\\d{1,2}-\\w+)";
+  var regExp = new RegExp(url, "g");
+  return gulp
+    .src(["src/index.html"], { base: "src" })
+    .pipe(replace(regExp, `${S3}${gulp.env.tag}/js`));
+}
+
+function productionChangeToTest() {
+  var url = S3 + "(\\d.\\d.\\d{1,2})";
+  var regExp = new RegExp(url, "g");
+  return gulp
+    .src(["src/index.html"], { base: "src" })
+    .pipe(
+      replace(regExp, /\/(event-collection_107)\/(\d\.\d\.\d{1,2}-SNAPSHOT)/g)
+    );
 }
 
 function cleanTask() {
@@ -119,9 +127,10 @@ function cleanTask() {
 
 gulp.task("lib", libTask("src/lib"));
 gulp.task("changeTag", changeTag);
-gulp.task("changeDevFirst", testChangeToDevURLFirst);
-gulp.task("changeDevSecond", testChangeToDevURLSecond);
+gulp.task("changeDev", testChangeToDevURL);
 gulp.task("changeTest", devChangeToTestURL);
+gulp.task("testChangeProduction", testChangeToProduction);
+gulp.task("productionChangeTest", productionChangeToTest);
 gulp.task("js", function() {
   return gulp
     .src("src/js/handoutresource.js", { base: "src" })

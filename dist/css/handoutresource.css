@@ -18,7 +18,10 @@
   font-family: "微軟正黑體";
 }
 
-.table .dataRow.videoRow {
+.table .dataRow.videoRow,
+.table .dataRow.mp3Row,
+.table .dataRow.pngRow,
+.table .dataRow.pdfRow {
   font-size: 70px;
   font-family: "微軟正黑體";
 }
@@ -51,4 +54,14 @@
   outline: none;
   color: black;
   border: 3px solid #555555;
+}
+
+.dataRow.mp3Row audio {
+  width: 100%;
+  -moz-box-shadow: 2px 2px 4px 0px #006773;
+  -webkit-box-shadow: 2px 2px 4px 0px #006773;
+  box-shadow: 2px 2px 4px 0px #006773;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
 }
