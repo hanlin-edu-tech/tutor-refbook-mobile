@@ -242,7 +242,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
       urlParams["subject"];
     ajaxGet(
       "/handoutresource" + "/api/Find?" + query,
-      // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=橘子複習講義&subject=pc",
+      // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=金撰複習講義&subject=en",
       // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=贏家英語系列&subject=article",
       null,
       function(data) {
@@ -352,43 +352,8 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
               requestFullScreen.bind(iframe)();
             }
           }
-          // iphone 系統的使用者
-        } else if (navigator.userAgent.match(/iphone/i)) {
-          $(".dataRow.videoRow").on("click", function(event) {
-            let youtubeId = event.target.getAttribute("data-resourceIds");
-            let iframe = document.getElementById(youtubeId);
-            let iframeSrc = iframe.src;
-            iframe.src = iframeSrc;
-
-            onYouTubeIframeAPIReady(youtubeId);
-          });
-
-          function onYouTubeIframeAPIReady(youtubeId) {
-            let player = new YT.Player(youtubeId, { videoId: youtubeId });
-
-            $(".dataRow.videoRow").on("click", function() {
-              player.stopVideo();
-            });
-
-            $(".dataRow.panel").on("click", function() {
-              player.stopVideo();
-            });
-          }
-
-          function playFullscreen(event) {
-            var requestFullScreen =
-              iframe.requestFullScreen ||
-              iframe.mozRequestFullScreen ||
-              iframe.webkitRequestFullScreen;
-            if (requestFullScreen) {
-              requestFullScreen.bind(iframe)();
-            }
-          }
           // 其他系統的使用者
         } else {
-          $(".dataRow.mp3Row").on("click", function(event) {
-            $(".dataRow.mp3Row audio source").css("display", "none");
-          });
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
             let iframe = document.getElementById(youtubeId);
