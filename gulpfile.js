@@ -9,6 +9,8 @@ var util = require("gulp-template-util");
 var babel = require("gulp-babel");
 var replace = require("gulp-replace");
 var connect = require("gulp-connect");
+var apiHost = "/handoutresource/api/Find?";
+var host = "https://www.ehanlin.com.tw";
 var S3 =
   "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/";
 
@@ -91,15 +93,27 @@ function testChangeToDevURL() {
   var url = S3 + "(\\d.\\d.\\d{1,2}-\\w+)";
   var regExp = new RegExp(url, "g");
   return gulp
-    .src(["src/index.html"], { base: "src" })
+    .src(["src/index.html", "src/js/handoutresource.js"], { base: "src" })
     .pipe(replace(regExp, "."))
+    .pipe(
+      replace(
+        apiHost + "${query}",
+        `${host}${apiHost}year=106&type=金撰複習講義&subject=en`
+      )
+    )
     .pipe(gulp.dest("src"));
 }
 
 function devChangeToTestURL() {
   return gulp
-    .src(["src/index.html"], { base: "src" })
+    .src(["src/index.html", "src/js/handoutresource.js"], { base: "src" })
     .pipe(replace("./js", `${S3}${gulp.env.tag}/js`))
+    .pipe(
+      replace(
+        `${host}${apiHost}year=106&type=金撰複習講義&subject=en`,
+        apiHost + "${query}"
+      )
+    )
     .pipe(gulp.dest("src"));
 }
 
