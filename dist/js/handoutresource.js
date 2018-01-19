@@ -241,8 +241,8 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
       "&subject=" +
       urlParams["subject"];
     ajaxGet(
-      // "/handoutresource" + "/api/Find?" + query,
-      "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=金撰複習講義&subject=en",
+      "/handoutresource" + "/api/Find?" + query,
+      // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=金撰複習講義&subject=en",
       // "https://www.ehanlin.com.tw/handoutresource/api/Find?year=106&type=贏家英語系列&subject=article",
       null,
       function(data) {
@@ -354,6 +354,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           }
           // 其他系統的使用者
         } else {
+          console.log("其他系統的使用者");
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
             let iframe = document.getElementById(youtubeId);

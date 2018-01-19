@@ -354,6 +354,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           }
           // 其他系統的使用者
         } else {
+          console.log("其他系統的使用者");
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
             let iframe = document.getElementById(youtubeId);
