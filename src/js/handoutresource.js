@@ -4,8 +4,8 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
   const tablePrefix = "tb";
   var qrcodeLists = [];
 
-  function Clickvideo() {
-    var data = GetData(this);
+  function clickVideo() {
+    var data = getData(this);
     var temp = $("#video-template").tmpl({
       data: data
     });
@@ -13,11 +13,11 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     if ($.isEmptyObject(preElement)) {
       preElement = this;
     }
-    IframeResize();
+    iframeResize();
   }
 
-  function Clickmp3() {
-    var data = GetData(this);
+  function clickMp3() {
+    var data = getData(this);
     var temp = $("#mp3-template").tmpl({
       data: data
     });
@@ -25,24 +25,24 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     if ($.isEmptyObject(preElement)) {
       preElement = this;
     }
-    IframeResize();
+    iframeResize();
   }
 
-  function Clickpng() {
-    var data = GetData(this);
+  function clickPng() {
+    var data = getData(this);
     var temp = $("#png-template").tmpl({
       data: data
     });
     temp.appendTo(this);
-    temp.find("img").load(IframeResize);
+    temp.find("img").load(iframeResize);
     if ($.isEmptyObject(preElement)) {
       preElement = this;
     }
-    IframeResize();
+    iframeResize();
   }
 
-  function Clickpdf() {
-    var data = GetData(this);
+  function clickPdf() {
+    var data = getData(this);
     var temp = $("#pdf-template").tmpl({
       data: data
     });
@@ -53,23 +53,23 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     if ($.isEmptyObject(preElement)) {
       preElement = this;
     }
-    IframeResize();
+    iframeResize();
   }
 
-  function ClickCommingSoon() {
-    var data = GetData(this);
+  function clickCommingSoon() {
+    var data = getData(this);
     var temp = $("#comming-template").tmpl({
       data: data
     });
-    temp.find("img").load(IframeResize);
+    temp.find("img").load(iframeResize);
     temp.appendTo(this);
     if ($.isEmptyObject(preElement)) {
       preElement = this;
     }
-    IframeResize();
+    iframeResize();
   }
 
-  function GetData(data) {
+  function getData(data) {
     var returnData = {};
     returnData.resourceIds = $(data).attr("data-resourceIds");
     if (returnData.resourceIds) {
@@ -88,7 +88,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     return returnData;
   }
 
-  function FillIconInternal(element, index, array) {
+  function fillIconInternal(element, index, array) {
     if (element.qRcode) {
       element.qRcode = element.qRcode.split("#")[1];
     }
@@ -131,7 +131,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     }
   }
 
-  function GetTbodyIndex(resources) {
+  function getTbodyIndex(resources) {
     for (var i = 0, len = resources.length; i < len; i++) {
       if (resources[i].qRcode) {
         var index = resources[i].qRcode.split("_")[0];
@@ -145,7 +145,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     }
   }
 
-  function ProcressData(element, index, array) {
+  function procressData(element, index, array) {
     element.resources = element.resources.filter(function(
       resource,
       index,
@@ -153,33 +153,33 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     ) {
       return resource.visible;
     });
-    element.resources.forEach(FillIconInternal);
-    element.tbodyIndex = GetTbodyIndex(element.resources);
+    element.resources.forEach(fillIconInternal);
+    element.tbodyIndex = getTbodyIndex(element.resources);
     if (!element.tbodyIndex) {
       element.tbodyIndex = "tb" + index;
     }
   }
 
-  function Move() {
+  function move() {
     var target = location.hash;
     $(target).trigger("click");
   }
 
-  function IframeResize() {
+  function iframeResize() {
     if (window.parent.resourcesLoaded) {
       window.parent.resourcesLoaded();
     }
   }
 
-  function Collapse() {
+  function collapse() {
     var sender = $(this);
     var target = $(sender.attr("data-target"));
     target.toggleClass("in");
     sender.trigger("collpase", sender);
-    IframeResize();
+    iframeResize();
   }
 
-  function FillQueryString() {
+  function fillQueryString() {
     var e,
       a = /\+/g, // Regex for replacing addition symbol with a space
       r = /([^&=]+)=?([^&]*)/g,
@@ -192,7 +192,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     }
   }
 
-  function ProcressTrigger(sender) {
+  function procressTrigger(sender) {
     var pre = $(preElement);
     var sen = $(sender);
     if (
@@ -207,15 +207,15 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     }
     pre.find("div").removeClass("in");
     if (pre.hasClass("videoRow")) {
-      StopYoutube(pre);
+      stopYoutube(pre);
     }
     if (pre.hasClass("mp3Row")) {
-      StopAudio(pre);
+      stopAudio(pre);
     }
-    IframeResize();
+    iframeResize();
   }
 
-  function StopYoutube(element) {
+  function stopYoutube(element) {
     element.find(".youtube_player_iframe").each(function() {
       this.contentWindow.postMessage(
         '{"event":"command","func":"' + "stopVideo" + '","args":""}',
@@ -224,7 +224,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     });
   }
 
-  function StopAudio(element) {
+  function stopAudio(element) {
     element.find("audio").each(function() {
       this.pause();
       this.currentTime = 0;
@@ -232,7 +232,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
   }
 
   var init = function() {
-    FillQueryString();
+    fillQueryString();
     var query =
       "year=" +
       urlParams["year"] +
@@ -250,10 +250,10 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           var img =
             '<img style="max-width: 100%; height:auto;" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/img/%E6%95%AC%E8%AB%8B%E6%9C%9F%E5%BE%85.jpg">';
           $(img)
-            .load(IframeResize)
+            .load(iframeResize)
             .appendTo($("#div_demo"));
         } else {
-          data.forEach(ProcressData);
+          data.forEach(procressData);
           var parentHash = 0;
           if (location.hash) {
             parentHash = location.hash.split("_")[0].substring(1);
@@ -262,40 +262,54 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
             data: data,
             parentHash: parentHash
           });
-          temp.on("click", "tr[data-target]", Collapse);
-          temp.on("click", "td[data-target]", Collapse);
+          temp.on("click", "tr[data-target]", collapse);
+          temp.on("click", "td[data-target]", collapse);
           temp.appendTo("#div_demo");
-          $("#div_demo .videoRow").one("click", Clickvideo);
-          $("#div_demo .pngRow").one("click", Clickpng);
-          $("#div_demo .pdfRow").one("click", Clickpdf);
-          $("#div_demo .mp3Row").one("click", Clickmp3);
-          $("#div_demo .commingSoon").one("click", ClickCommingSoon);
+          $("#div_demo .videoRow").one("click", clickVideo);
+          $("#div_demo .pngRow").one("click", clickPng);
+          $("#div_demo .pdfRow").one("click", clickPdf);
+          $("#div_demo .mp3Row").one("click", clickMp3);
+          $("#div_demo .commingSoon").one("click", clickCommingSoon);
           if (location.hash) {
-            Move();
+            move();
           }
         }
-        IframeResize();
+        iframeResize();
         $(document).on("collpase", function(event) {
           if (!(event.target === preElement)) {
-            ProcressTrigger(event.target);
+            procressTrigger(event.target);
           }
           preElement = event.target;
         });
 
         $(".dataRow.panel").on("click", function() {
+          $(".advertising img").css("display", "none");
           $(this).css("color", "#848484");
         });
         $(".dataRow.mp3Row").on("click", function() {
+          $(".advertising img").css("display", "none");
           $(this).css("color", "#848484");
         });
         $(".dataRow.pngRow").on("click", function() {
+          $(".advertising img").css("display", "none");
           $(this).css("color", "#848484");
         });
         $(".dataRow.pdfRow").on("click", function() {
+          $(".advertising img").css("display", "none");
           $(this).css("color", "#848484");
         });
         $(".dataRow.videoRow").on("click", function() {
+          $(".advertising img").css("display", "none");
           $(this).css("color", "#848484");
+        });
+        $(".advertising").on("click", function() {
+          let thisImg = $(this).find("td img");
+          $(this).css("color", "#848484");
+          if (thisImg.css("display") === "none") {
+            thisImg.css("display", "");
+          } else {
+            thisImg.css("display", "none");
+          }
         });
 
         //  android 系統的使用者

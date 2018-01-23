@@ -21,7 +21,8 @@
 .table .dataRow.videoRow,
 .table .dataRow.mp3Row,
 .table .dataRow.pngRow,
-.table .dataRow.pdfRow {
+.table .dataRow.pdfRow,
+.table .advertising .advertising-text {
   font-size: 70px;
   font-family: "微軟正黑體";
 }
@@ -71,5 +72,9 @@
 }
 
 .dataRow.pngRow img {
+  width: 100%;
+}
+
+.table .advertising img {
   width: 100%;
 }
