@@ -10,7 +10,7 @@ var babel = require("gulp-babel");
 var replace = require("gulp-replace");
 var connect = require("gulp-connect");
 var apiHost = "/handoutresource/api/Find?";
-var host = "https://www.ehanlin.com.tw";
+var host = "https://test.ehanlin.com.tw";
 var S3 =
   "https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/";
 
@@ -99,7 +99,7 @@ function testChangeToDevURL() {
     .pipe(
       replace(
         apiHost + "${query}",
-        `${host}${apiHost}year=106&type=金撰複習講義&subject=en`
+        `${host}${apiHost}year=107&type=高一上學習寶典&subject=hi`
       )
     )
     .pipe(gulp.dest("src"));
@@ -111,7 +111,7 @@ function devChangeToTestURL() {
     .pipe(replace("./js", `${S3}${gulp.env.tag}/js`))
     .pipe(
       replace(
-        `${host}${apiHost}year=106&type=金撰複習講義&subject=en`,
+        `${host}${apiHost}year=107&type=高一上學習寶典&subject=hi`,
         apiHost + "${query}"
       )
     )
