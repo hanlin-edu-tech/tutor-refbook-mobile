@@ -241,7 +241,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
       "&subject=" +
       urlParams["subject"];
     ajaxGet(
-      `/handoutresource/api/Find?${query}`,
+      `https://test.ehanlin.com.tw/handoutresource/api/Find?year=107&type=高一上學習寶典&subject=hi`,
       null,
       function(data) {
         console.log(data);
@@ -310,6 +310,13 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           } else {
             thisImg.css("display", "none");
           }
+        });
+        $(".advertising img").on("click", function() {
+          window.open(
+            "/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html",
+            "社會段考特訓e名師"
+          );
+          return false;
         });
 
         //  android 系統的使用者

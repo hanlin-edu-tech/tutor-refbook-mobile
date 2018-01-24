@@ -23,6 +23,7 @@
 .table .dataRow.pngRow,
 .table .dataRow.pdfRow,
 .table .advertising .advertising-text {
+  cursor: pointer;
   font-size: 70px;
   font-family: "微軟正黑體";
 }
@@ -77,4 +78,9 @@
 
 .table .advertising img {
   width: 100%;
+  cursor: pointer;
+}
+
+.table .advertising {
+  cursor: pointer;
 }
