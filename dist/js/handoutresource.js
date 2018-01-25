@@ -318,6 +318,14 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           );
           return false;
         });
+        $(document).ready(function() {
+          let qRcodeId = location.hash;
+          let tbodyId = qRcodeId.split("_")[0];
+          console.log(tbodyId);
+          console.log(qRcodeId);
+          $(tbodyId).click();
+          $(qRcodeId).click();
+        });
 
         //  android 系統的使用者
         if (navigator.userAgent.match(/android/i)) {
