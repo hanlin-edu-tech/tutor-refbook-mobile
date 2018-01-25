@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title>高中社會學習寶典</title>
         <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
-        <script type="text/javascript" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/0.4.48-SNAPSHOT/js/require.js" data-main="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/0.4.48-SNAPSHOT/js/main.js"></script>
+        <script type="text/javascript" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/0.4.49-SNAPSHOT/js/require.js" data-main="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/0.4.49-SNAPSHOT/js/main.js"></script>
         <link type="text/css" rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css" />
         <link type="text/css" rel="stylesheet" href="./css/icon/flaticon.css">
         <link type="text/css" rel="stylesheet" href="./css/handoutresource.css">
@@ -20,7 +20,7 @@
     <script id="resource" type="text/x-jquery-tmpl">
         <table class="table">
             <img style="width:100%;" src="./img/339x40.png"> {{each(index,dataVal) data}}
-            <tr id="#panel${tbodyIndex}" class="dataRow panel" data-target="#tbody${dataVal.tbodyIndex}" data-parentgroup='#tbody${dataVal.tbodyIndex}'>
+            <tr id="${tbodyIndex}" class="dataRow panel" data-target="#tbody${dataVal.tbodyIndex}" data-parentgroup='#tbody${dataVal.tbodyIndex}'>
                 <td class="info">
                     <span class="subject-name">${dataVal.subjectName}</span>&nbsp;&nbsp;
                     <span class="unit-name">

@@ -318,14 +318,6 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           );
           return false;
         });
-        $(document).ready(function() {
-          let qRcodeId = location.hash;
-          let tbodyId = qRcodeId.split("_")[0];
-          console.log(tbodyId);
-          console.log(qRcodeId);
-          $(tbodyId).click();
-          $(qRcodeId).click();
-        });
 
         //  android 系統的使用者
         if (navigator.userAgent.match(/android/i)) {
@@ -382,6 +374,19 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           // 其他系統的使用者
         } else {
           console.log("其他系統的使用者");
+
+          $(document).ready(function() {
+            let qRcodeId = location.hash;
+            let tbodyId = qRcodeId.split("_")[0];
+            let youtubeId = $(qRcodeId).attr("data-resourceIds");
+            console.log(youtubeId);
+            console.log(tbodyId);
+            console.log(qRcodeId);
+            $(tbodyId).click();
+            $(qRcodeId).click();
+            onYouTubeIframeAPIReady(youtubeId);
+          });
+
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
             let iframe = document.getElementById(youtubeId);
@@ -403,15 +408,15 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
             });
           }
 
-          function playFullscreen(event) {
-            var requestFullScreen =
-              iframe.requestFullScreen ||
-              iframe.mozRequestFullScreen ||
-              iframe.webkitRequestFullScreen;
-            if (requestFullScreen) {
-              requestFullScreen.bind(iframe)();
-            }
-          }
+          // function playFullscreen(event) {
+          //   var requestFullScreen =
+          //     iframe.requestFullScreen ||
+          //     iframe.mozRequestFullScreen ||
+          //     iframe.webkitRequestFullScreen;
+          //   if (requestFullScreen) {
+          //     requestFullScreen.bind(iframe)();
+          //   }
+          // }
         }
       },
       function(data) {
