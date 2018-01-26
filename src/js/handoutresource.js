@@ -84,7 +84,6 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     returnData.year = urlParams["year"];
     returnData.type = urlParams["type"];
     returnData.subject = urlParams["subject"];
-
     return returnData;
   }
 
@@ -241,7 +240,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
       "&subject=" +
       urlParams["subject"];
     ajaxGet(
-      `/handoutresource/api/Find?${query}`,
+      `https://test.ehanlin.com.tw/handoutresource/api/Find?year=107&type=高一上學習寶典&subject=cs`,
       null,
       function(data) {
         console.log(data);
@@ -254,10 +253,11 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
             .appendTo($("#div_demo"));
         } else {
           data.forEach(procressData);
+
           var parentHash = 0;
-          if (location.hash) {
-            parentHash = location.hash.split("_")[0].substring(1);
-          }
+          // if (location.hash) {
+          //   parentHash = location.hash.split("_")[0].substring(1);
+          // }
           var temp = $("#resource").tmpl({
             data: data,
             parentHash: parentHash
@@ -274,6 +274,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
             move();
           }
         }
+
         iframeResize();
         $(document).on("collpase", function(event) {
           if (!(event.target === preElement)) {
@@ -322,6 +323,14 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
         //  android 系統的使用者
         if (navigator.userAgent.match(/android/i)) {
           $(".wrapper .fullscreen-button").on("click", playFullscreen);
+          $(document).ready(function() {
+            let qRcodeId = location.hash;
+            let tbodyId = qRcodeId.split("_")[0];
+            let youtubeId = $(qRcodeId).attr("data-resourceIds");
+            $(tbodyId).click();
+            $(qRcodeId).click();
+            onYouTubeIframeAPIReady(youtubeId);
+          });
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
             let fullscreenBtn = $("tr.fullscreen-tr");
@@ -344,7 +353,9 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           });
 
           function onYouTubeIframeAPIReady(youtubeId) {
-            let player = new YT.Player(youtubeId, { videoId: youtubeId });
+            let player = new YT.Player(youtubeId, {
+              videoId: youtubeId
+            });
 
             $(".dataRow.videoRow").on("click", function() {
               player.stopVideo();
@@ -373,15 +384,10 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           }
           // 其他系統的使用者
         } else {
-          console.log("其他系統的使用者");
-
           $(document).ready(function() {
             let qRcodeId = location.hash;
             let tbodyId = qRcodeId.split("_")[0];
             let youtubeId = $(qRcodeId).attr("data-resourceIds");
-            console.log(youtubeId);
-            console.log(tbodyId);
-            console.log(qRcodeId);
             $(tbodyId).click();
             $(qRcodeId).click();
             onYouTubeIframeAPIReady(youtubeId);
@@ -397,7 +403,9 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           });
 
           function onYouTubeIframeAPIReady(youtubeId) {
-            let player = new YT.Player(youtubeId, { videoId: youtubeId });
+            let player = new YT.Player(youtubeId, {
+              videoId: youtubeId
+            });
 
             $(".dataRow.videoRow").on("click", function() {
               player.stopVideo();
