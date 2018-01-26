@@ -240,7 +240,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
       "&subject=" +
       urlParams["subject"];
     ajaxGet(
-      `https://test.ehanlin.com.tw/handoutresource/api/Find?year=107&type=高一上學習寶典&subject=cs`,
+      `/handoutresource/api/Find?${query}`,
       null,
       function(data) {
         console.log(data);
