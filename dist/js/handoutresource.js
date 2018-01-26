@@ -321,16 +321,21 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
         });
 
         //  android 系統的使用者
+        //  navigator.userAgent.match(/android/i)
         if (navigator.userAgent.match(/android/i)) {
           $(".wrapper .fullscreen-button").on("click", playFullscreen);
-          $(document).ready(function() {
-            let qRcodeId = location.hash;
-            let tbodyId = qRcodeId.split("_")[0];
-            let youtubeId = $(qRcodeId).attr("data-resourceIds");
-            $(tbodyId).click();
-            $(qRcodeId).click();
-            onYouTubeIframeAPIReady(youtubeId);
-          });
+
+          if (location.hash) {
+            $(document).ready(function() {
+              let qRcodeId = location.hash;
+              let tbodyId = qRcodeId.split("_")[0];
+              let youtubeId = $(qRcodeId).attr("data-resourceIds");
+              $(tbodyId).click();
+              $(qRcodeId).click();
+              onYouTubeIframeAPIReady(youtubeId);
+            });
+          }
+
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
             let fullscreenBtn = $("tr.fullscreen-tr");
@@ -384,14 +389,16 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           }
           // 其他系統的使用者
         } else {
-          $(document).ready(function() {
-            let qRcodeId = location.hash;
-            let tbodyId = qRcodeId.split("_")[0];
-            let youtubeId = $(qRcodeId).attr("data-resourceIds");
-            $(tbodyId).click();
-            $(qRcodeId).click();
-            onYouTubeIframeAPIReady(youtubeId);
-          });
+          if (location.hash) {
+            $(document).ready(function() {
+              let qRcodeId = location.hash;
+              let tbodyId = qRcodeId.split("_")[0];
+              let youtubeId = $(qRcodeId).attr("data-resourceIds");
+              $(tbodyId).click();
+              $(qRcodeId).click();
+              onYouTubeIframeAPIReady(youtubeId);
+            });
+          }
 
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
