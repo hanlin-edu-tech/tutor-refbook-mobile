@@ -99,7 +99,7 @@ function testChangeToDevURL() {
     .pipe(
       replace(
         apiHost + "${query}",
-        `${host}${apiHost}year=107&type=高一上學習寶典&subject=hi`
+        `${host}${apiHost}year=107&type=高一上學習寶典&subject=cs`
       )
     )
     .pipe(gulp.dest("src"));
@@ -111,7 +111,7 @@ function devChangeToTestURL() {
     .pipe(replace("./js", `${S3}${gulp.env.tag}/js`))
     .pipe(
       replace(
-        `${host}${apiHost}year=107&type=高一上學習寶典&subject=hi`,
+        `${host}${apiHost}year=107&type=高一上學習寶典&subject=cs`,
         apiHost + "${query}"
       )
     )
