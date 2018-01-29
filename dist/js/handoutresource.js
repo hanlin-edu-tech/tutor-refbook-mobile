@@ -322,16 +322,28 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
 
         //  android 系統的使用者
         //  navigator.userAgent.match(/android/i)
+        // ======================================================================================= //
         if (navigator.userAgent.match(/android/i)) {
-          $(".wrapper .fullscreen-button").on("click", playFullscreen);
-
           if (location.hash) {
             $(document).ready(function() {
               let qRcodeId = location.hash;
               let tbodyId = qRcodeId.split("_")[0];
               let youtubeId = $(qRcodeId).attr("data-resourceIds");
+              let fullscreenBtn = $("tr.fullscreen-tr");
+              let thisBtnTarget = $(qRcodeId)
+                .parents("tr")
+                .next("tr.fullscreen-tr");
+
               $(tbodyId).click();
               $(qRcodeId).click();
+
+              if (thisBtnTarget.css("display") === "none") {
+                fullscreenBtn.hide();
+                thisBtnTarget.css("display", "");
+              } else {
+                thisBtnTarget.css("display", "none");
+              }
+
               onYouTubeIframeAPIReady(youtubeId);
             });
           }
@@ -339,7 +351,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
           $(".dataRow.videoRow").on("click", function(event) {
             let youtubeId = event.target.getAttribute("data-resourceIds");
             let fullscreenBtn = $("tr.fullscreen-tr");
-            let thisBtnTarget = $(event.currentTarget)
+            let thisBtnTarget = $(this)
               .parents("tr")
               .next("tr.fullscreen-tr");
 
@@ -365,21 +377,20 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
             $(".dataRow.videoRow").on("click", function() {
               player.stopVideo();
             });
-
             $(".dataRow.panel").on("click", function() {
               player.stopVideo();
             });
           }
 
+          $(".wrapper .fullscreen-button").on("click", playFullscreen);
           function playFullscreen(event) {
             let youtubeId = $(event.currentTarget)
               .parents("tr.fullscreen-tr")
               .prev("tr")
               .find(".dataRow.videoRow")
               .attr("data-resourceids");
-
-            let iframe = document.querySelector(`#${youtubeId}`);
-            var requestFullScreen =
+            let iframe = document.getElementById(youtubeId);
+            let requestFullScreen =
               iframe.requestFullScreen ||
               iframe.mozRequestFullScreen ||
               iframe.webkitRequestFullScreen;
@@ -387,6 +398,8 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
               requestFullScreen.bind(iframe)();
             }
           }
+          // =================================================================================== //
+
           // 其他系統的使用者
         } else {
           if (location.hash) {
@@ -422,16 +435,6 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
               player.stopVideo();
             });
           }
-
-          // function playFullscreen(event) {
-          //   var requestFullScreen =
-          //     iframe.requestFullScreen ||
-          //     iframe.mozRequestFullScreen ||
-          //     iframe.webkitRequestFullScreen;
-          //   if (requestFullScreen) {
-          //     requestFullScreen.bind(iframe)();
-          //   }
-          // }
         }
       },
       function(data) {
