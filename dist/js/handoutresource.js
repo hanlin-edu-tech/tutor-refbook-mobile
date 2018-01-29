@@ -322,7 +322,6 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
 
         //  android 系統的使用者
         //  navigator.userAgent.match(/android/i)
-        // ======================================================================================= //
         if (navigator.userAgent.match(/android/i)) {
           if (location.hash) {
             $(document).ready(function() {
@@ -398,7 +397,6 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
               requestFullScreen.bind(iframe)();
             }
           }
-          // =================================================================================== //
 
           // 其他系統的使用者
         } else {
