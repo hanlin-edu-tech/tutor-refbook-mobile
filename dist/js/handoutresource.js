@@ -284,6 +284,16 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
         });
 
         $(".dataRow.panel").on("click", function() {
+          let getId = $(this)
+            .attr("id")
+            .split("");
+          if (getId[0] === "t") {
+            let dataRow = $(this)
+              .parents("tbody")
+              .next()
+              .find("tr td.dataRow");
+            dataRow.css("display", "none");
+          }
           $(".advertising img").css("display", "none");
           $(this).css("color", "#848484");
         });
