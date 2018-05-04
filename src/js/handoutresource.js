@@ -243,7 +243,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
       `/handoutresource/api/Find?${query}`,
       null,
       function (data) {
-        console.log(data)
         if (!data[0].resources.length) {
           var img =
             '<img style="max-width: 100%; height:auto;" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/img/%E6%95%AC%E8%AB%8B%E6%9C%9F%E5%BE%85.jpg">'
