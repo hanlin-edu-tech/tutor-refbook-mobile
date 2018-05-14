@@ -81,7 +81,7 @@ function changeTag () {
       base: 'src'
     })
     .pipe(
-      replace(/\/(event-collection_107)\/(\d\.\d\.\d{2}\-\w+)/g, function (
+      replace(/\/(event-collection_107)\/(\d\.\d\.\d{2}-\w+)/g, function (
         match,
         p1
       ) {
