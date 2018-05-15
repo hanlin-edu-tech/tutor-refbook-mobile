@@ -423,6 +423,20 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
 
           // 其他系統的使用者
         } else {
+          function onYouTubeIframeAPIReady (youtubeId) {
+            let player = new YT.Player(youtubeId, {
+              videoId: youtubeId
+            })
+
+            $('.dataRow.videoRow').on('click', function () {
+              player.stopVideo()
+            })
+
+            $('.dataRow.panel').on('click', function () {
+              player.stopVideo()
+            })
+          }
+
           if (location.hash) {
             $(document).ready(function () {
               let qRcodeId = location.hash
@@ -448,20 +462,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
               onYouTubeIframeAPIReady(ele)
             })
           })
-
-          function onYouTubeIframeAPIReady (youtubeId) {
-            let player = new YT.Player(youtubeId, {
-              videoId: youtubeId
-            })
-
-            $('.dataRow.videoRow').on('click', function () {
-              player.stopVideo()
-            })
-
-            $('.dataRow.panel').on('click', function () {
-              player.stopVideo()
-            })
-          }
         }
       },
       function (data) {
