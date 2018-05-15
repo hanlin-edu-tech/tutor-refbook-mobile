@@ -240,7 +240,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
       '&subject=' +
       urlParams['subject']
     ajaxGet(
-      // /handoutresource/api/Find?${query}
       `/handoutresource/api/Find?${query}`,
       null,
       function (data) {
@@ -426,11 +425,16 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
 
           $('.dataRow.videoRow').on('click', function (event) {
             let youtubeId = event.target.getAttribute('data-resourceIds')
-            let iframe = document.getElementById(youtubeId)
-            let iframeSrc = iframe.src
-            iframe.src = iframeSrc
-
-            onYouTubeIframeAPIReady(youtubeId)
+            let youtubeIds = youtubeId.split(',')
+            let iframe
+            let iframeSrc
+            /* 針對題組影片 如：一個題組有多個影片 */
+            youtubeIds.forEach(ele => {
+              iframe = document.getElementById(ele)
+              iframeSrc = iframe.src
+              iframe.src = iframeSrc
+              onYouTubeIframeAPIReady(ele)
+            })
           })
 
           function onYouTubeIframeAPIReady (youtubeId) {
