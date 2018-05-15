@@ -333,7 +333,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
 
         //  android 系統的使用者
         //  navigator.userAgent.match(/android/i)
-        if (navigator.userAgent.match(/android/i)) {
+        if (true) {
           if (location.hash) {
             $(document).ready(function () {
               let qRcodeId = location.hash
@@ -360,14 +360,13 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
 
           $('.dataRow.videoRow').on('click', function (event) {
             let youtubeId = event.target.getAttribute('data-resourceIds')
+            let youtubeIds = youtubeId.split(',')
             let fullscreenBtn = $('tr.fullscreen-tr')
             let thisBtnTarget = $(this)
               .parents('tr')
               .next('tr.fullscreen-tr')
-
-            let iframe = document.getElementById(youtubeId)
-            let iframeSrc = iframe.src
-            iframe.src = iframeSrc
+            let iframe
+            let iframeSrc
 
             if (thisBtnTarget.css('display') === 'none') {
               fullscreenBtn.hide()
@@ -376,7 +375,13 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
               thisBtnTarget.css('display', 'none')
             }
 
-            onYouTubeIframeAPIReady(youtubeId)
+            /* 針對題組影片 如：一個題組有多個影片 */
+            youtubeIds.forEach(ele => {
+              iframe = document.getElementById(ele)
+              iframeSrc = iframe.src
+              iframe.src = iframeSrc
+              onYouTubeIframeAPIReady(ele)
+            })
           })
 
           function onYouTubeIframeAPIReady (youtubeId) {
@@ -400,14 +405,20 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
               .prev('tr')
               .find('.dataRow.videoRow')
               .attr('data-resourceids')
-            let iframe = document.getElementById(youtubeId)
-            let requestFullScreen =
-              iframe.requestFullScreen ||
-              iframe.mozRequestFullScreen ||
-              iframe.webkitRequestFullScreen
-            if (requestFullScreen) {
-              requestFullScreen.bind(iframe)()
-            }
+            let youtubeIds = youtubeId.split(',')
+            let iframe
+
+            /* 針對題組影片 如：一個題組有多個影片 */
+            youtubeIds.forEach(ele => {
+              iframe = document.getElementById(ele)
+              let requestFullScreen =
+                iframe.requestFullScreen ||
+                iframe.mozRequestFullScreen ||
+                iframe.webkitRequestFullScreen
+              if (requestFullScreen) {
+                requestFullScreen.bind(iframe)()
+              }
+            })
           }
 
           // 其他系統的使用者
@@ -428,6 +439,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
             let youtubeIds = youtubeId.split(',')
             let iframe
             let iframeSrc
+
             /* 針對題組影片 如：一個題組有多個影片 */
             youtubeIds.forEach(ele => {
               iframe = document.getElementById(ele)
