@@ -96,7 +96,7 @@ function testChangeToDevURL () {
   var url = S3 + '(\\d.\\d.\\d{1,2}-\\w+)'
   var regExp = new RegExp(url, 'g')
   return gulp
-    .src(['src/index.html', 'src/js/handoutresource.js'], {
+    .src(['src/js/handoutresource.js'], {
       base: 'src'
     })
     .pipe(replace(regExp, '.'))
@@ -111,7 +111,7 @@ function testChangeToDevURL () {
 
 function devChangeToTestURL () {
   return gulp
-    .src(['src/index.html', 'src/js/handoutresource.js'], {
+    .src(['src/js/handoutresource.js'], {
       base: 'src'
     })
     .pipe(replace('./js', `${S3}${gulp.env.tag}/js`))
