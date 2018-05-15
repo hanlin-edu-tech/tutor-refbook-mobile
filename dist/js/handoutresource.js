@@ -1,12 +1,12 @@
-define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
-  let urlParams = {}
-  let preElement = {}
+define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
+  var urlParams = {}
+  var preElement = {}
   const tablePrefix = 'tb'
-  let qrcodeLists = []
+  var qrcodeLists = []
 
-  let clickVideo = () => {
-    let data = getData(this)
-    let temp = $('#video-template').tmpl({
+  function clickVideo () {
+    var data = getData(this)
+    var temp = $('#video-template').tmpl({
       data: data
     })
     temp.appendTo(this)
@@ -16,9 +16,9 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     iframeResize()
   }
 
-  let clickMp3 = () => {
-    let data = getData(this)
-    let temp = $('#mp3-template').tmpl({
+  function clickMp3 () {
+    var data = getData(this)
+    var temp = $('#mp3-template').tmpl({
       data: data
     })
     temp.appendTo(this)
@@ -28,9 +28,9 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     iframeResize()
   }
 
-  let clickPng = () => {
-    let data = getData(this)
-    let temp = $('#png-template').tmpl({
+  function clickPng () {
+    var data = getData(this)
+    var temp = $('#png-template').tmpl({
       data: data
     })
     temp.appendTo(this)
@@ -41,12 +41,12 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     iframeResize()
   }
 
-  let clickPdf = () => {
-    let data = getData(this)
-    let temp = $('#pdf-template').tmpl({
+  function clickPdf () {
+    var data = getData(this)
+    var temp = $('#pdf-template').tmpl({
       data: data
     })
-    temp.find('a').on('click', e => {
+    temp.find('a').on('click', function (e) {
       e.stopPropagation()
     })
     temp.appendTo(this)
@@ -56,9 +56,9 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     iframeResize()
   }
 
-  let clickCommingSoon = () => {
-    let data = getData(this)
-    let temp = $('#comming-template').tmpl({
+  function clickCommingSoon () {
+    var data = getData(this)
+    var temp = $('#comming-template').tmpl({
       data: data
     })
     temp.find('img').load(iframeResize)
@@ -69,8 +69,8 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     iframeResize()
   }
 
-  let getData = data => {
-    let returnData = {}
+  function getData (data) {
+    var returnData = {}
     returnData.resourceIds = $(data).attr('data-resourceIds')
     if (returnData.resourceIds) {
       returnData.resourceIds = returnData.resourceIds.split(',')
@@ -78,8 +78,8 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     returnData.id = $(data)
       .attr('data-target')
       .substring(1)
-    if (window.location.hash) {
-      returnData.hash = window.location.hash.substring(1)
+    if (location.hash) {
+      returnData.hash = location.hash.substring(1)
     }
     returnData.year = urlParams['year']
     returnData.type = urlParams['type']
@@ -87,7 +87,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     return returnData
   }
 
-  let fillIconInternal = (element, index, array) => {
+  function fillIconInternal (element, index, array) {
     if (element.qRcode) {
       element.qRcode = element.qRcode.split('#')[1]
     }
@@ -130,10 +130,10 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     }
   }
 
-  let getTbodyIndex = resources => {
-    for (let i = 0, len = resources.length; i < len; i++) {
+  function getTbodyIndex (resources) {
+    for (var i = 0, len = resources.length; i < len; i++) {
       if (resources[i].qRcode) {
-        let index = resources[i].qRcode.split('_')[0]
+        var index = resources[i].qRcode.split('_')[0]
         if (qrcodeLists.indexOf(index) === -1) {
           qrcodeLists.push(index)
           return index
@@ -144,12 +144,12 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     }
   }
 
-  let procressData = (element, index, array) => {
-    element.resources = element.resources.filter((
+  function procressData (element, index, array) {
+    element.resources = element.resources.filter(function (
       resource,
       index,
       array
-    ) => {
+    ) {
       return resource.visible
     })
     element.resources.forEach(fillIconInternal)
@@ -159,30 +159,30 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     }
   }
 
-  let move = () => {
-    let target = window.location.hash
+  function move () {
+    var target = location.hash
     $(target).trigger('click')
   }
 
-  let iframeResize = () => {
+  function iframeResize () {
     if (window.parent.resourcesLoaded) {
       window.parent.resourcesLoaded()
     }
   }
 
-  let collapse = () => {
-    let sender = $(this)
-    let target = $(sender.attr('data-target'))
+  function collapse () {
+    var sender = $(this)
+    var target = $(sender.attr('data-target'))
     target.toggleClass('in')
     sender.trigger('collpase', sender)
     iframeResize()
   }
 
-  let fillQueryString = () => {
-    let e,
+  function fillQueryString () {
+    var e,
       a = /\+/g, // Regex for replacing addition symbol with a space
       r = /([^&=]+)=?([^&]*)/g,
-      d = s => {
+      d = function (s) {
         return decodeURIComponent(s.replace(a, ' '))
       },
       q = window.location.search.substring(1)
@@ -191,15 +191,15 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     }
   }
 
-  let procressTrigger = sender => {
-    let pre = $(preElement)
-    let sen = $(sender)
+  function procressTrigger (sender) {
+    var pre = $(preElement)
+    var sen = $(sender)
     if (
       sen.attr('data-parentgroup') &&
       pre.attr('data-parentgroup') &&
       sen.attr('data-parentgroup') !== pre.attr('data-parentgroup')
     ) {
-      let parentElement = document.getElementById(
+      var parentElement = document.getElementById(
         pre.attr('data-parentgroup').substring(1)
       )
       $(parentElement).removeClass('in')
@@ -214,8 +214,8 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     iframeResize()
   }
 
-  let stopYoutube = element => {
-    element.find('.youtube_player_iframe').each(() => {
+  function stopYoutube (element) {
+    element.find('.youtube_player_iframe').each(function () {
       this.contentWindow.postMessage(
         '{"event":"command","func":"' + 'stopVideo' + '","args":""}',
         '*'
@@ -223,16 +223,16 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
     })
   }
 
-  let stopAudio = element => {
-    element.find('audio').each(() => {
+  function stopAudio (element) {
+    element.find('audio').each(function () {
       this.pause()
       this.currentTime = 0
     })
   }
 
-  let init = () => {
+  var init = function () {
     fillQueryString()
-    let query =
+    var query =
       'year=' +
       urlParams['year'] +
       '&type=' +
@@ -240,14 +240,15 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
       '&subject=' +
       urlParams['subject']
     ajaxGet(
+      // /handoutresource/api/Find?${query}
       `/handoutresource/api/Find?${query}`,
       null,
-      data => {
+      function (data) {
         let htmlTitle = data[0].subjectName
         document.title = htmlTitle
 
         if (!data[0].resources.length) {
-          let img =
+          var img =
             '<img style="max-width: 100%; height:auto;" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/img/%E6%95%AC%E8%AB%8B%E6%9C%9F%E5%BE%85.jpg">'
           $(img)
             .load(iframeResize)
@@ -255,11 +256,11 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
         } else {
           data.forEach(procressData)
 
-          let parentHash = 0
+          var parentHash = 0
           // if (location.hash) {
           //   parentHash = location.hash.split("_")[0].substring(1);
           // }
-          let temp = $('#resource').tmpl({
+          var temp = $('#resource').tmpl({
             data: data,
             parentHash: parentHash
           })
@@ -271,20 +272,20 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
           $('#div_demo .pdfRow').one('click', clickPdf)
           $('#div_demo .mp3Row').one('click', clickMp3)
           $('#div_demo .commingSoon').one('click', clickCommingSoon)
-          if (window.location.hash) {
+          if (location.hash) {
             move()
           }
         }
 
         iframeResize()
-        $(document).on('collpase', event => {
+        $(document).on('collpase', function (event) {
           if (!(event.target === preElement)) {
             procressTrigger(event.target)
           }
           preElement = event.target
         })
 
-        $('.dataRow.panel').on('click', () => {
+        $('.dataRow.panel').on('click', function () {
           // let getId = $(this)
           //   .attr('id')
           //   .split('')
@@ -298,23 +299,23 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
           // $('.advertising img').css('display', 'none')
           $(this).css('color', '#848484')
         })
-        $('.dataRow.mp3Row').on('click', () => {
+        $('.dataRow.mp3Row').on('click', function () {
           $('.advertising img').css('display', 'none')
           $(this).css('color', '#848484')
         })
-        $('.dataRow.pngRow').on('click', () => {
+        $('.dataRow.pngRow').on('click', function () {
           $('.advertising img').css('display', 'none')
           $(this).css('color', '#848484')
         })
-        $('.dataRow.pdfRow').on('click', () => {
+        $('.dataRow.pdfRow').on('click', function () {
           $('.advertising img').css('display', 'none')
           $(this).css('color', '#848484')
         })
-        $('.dataRow.videoRow').on('click', () => {
+        $('.dataRow.videoRow').on('click', function () {
           $('.advertising img').css('display', 'none')
           $(this).css('color', '#848484')
         })
-        $('.advertising').on('click', () => {
+        $('.advertising').on('click', function () {
           let thisImg = $(this).find('td img')
           $(this).css('color', '#848484')
           if (thisImg.css('display') === 'none') {
@@ -323,7 +324,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
             thisImg.css('display', 'none')
           }
         })
-        $('.advertising img').on('click', () => {
+        $('.advertising img').on('click', function () {
           window.open(
             '/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html',
             '社會段考特訓e名師'
@@ -334,9 +335,9 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
         //  android 系統的使用者
         //  navigator.userAgent.match(/android/i)
         if (navigator.userAgent.match(/android/i)) {
-          if (window.location.hash) {
-            $(document).ready(() => {
-              let qRcodeId = window.location.hash
+          if (location.hash) {
+            $(document).ready(function () {
+              let qRcodeId = location.hash
               let tbodyId = qRcodeId.split('_')[0]
               let youtubeId = $(qRcodeId).attr('data-resourceIds')
               let fullscreenBtn = $('tr.fullscreen-tr')
@@ -358,7 +359,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
             })
           }
 
-          $('.dataRow.videoRow').on('click', event => {
+          $('.dataRow.videoRow').on('click', function (event) {
             let youtubeId = event.target.getAttribute('data-resourceIds')
             let fullscreenBtn = $('tr.fullscreen-tr')
             let thisBtnTarget = $(this)
@@ -379,20 +380,22 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
             onYouTubeIframeAPIReady(youtubeId)
           })
 
-          let onYouTubeIframeAPIReady = youtubeId => {
+          function onYouTubeIframeAPIReady (youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
             })
 
-            $('.dataRow.videoRow').on('click', () => {
+            $('.dataRow.videoRow').on('click', function () {
               player.stopVideo()
             })
-            $('.dataRow.panel').on('click', () => {
+            $('.dataRow.panel').on('click', function () {
               player.stopVideo()
             })
           }
 
-          let playFullscreen = event => {
+          $('.wrapper .fullscreen-button').on('click', playFullscreen)
+
+          function playFullscreen (event) {
             let youtubeId = $(event.currentTarget)
               .parents('tr.fullscreen-tr')
               .prev('tr')
@@ -408,13 +411,11 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
             }
           }
 
-          $('.wrapper .fullscreen-button').on('click', playFullscreen)
-
           // 其他系統的使用者
         } else {
-          if (window.location.hash) {
-            $(document).ready(() => {
-              let qRcodeId = window.location.hash
+          if (location.hash) {
+            $(document).ready(function () {
+              let qRcodeId = location.hash
               let tbodyId = qRcodeId.split('_')[0]
               let youtubeId = $(qRcodeId).attr('data-resourceIds')
               $(tbodyId).click()
@@ -423,7 +424,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
             })
           }
 
-          $('.dataRow.videoRow').on('click', event => {
+          $('.dataRow.videoRow').on('click', function (event) {
             let youtubeId = event.target.getAttribute('data-resourceIds')
             let iframe = document.getElementById(youtubeId)
             let iframeSrc = iframe.src
@@ -432,22 +433,22 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], ($, ajaxGet) => {
             onYouTubeIframeAPIReady(youtubeId)
           })
 
-          let onYouTubeIframeAPIReady = youtubeId => {
+          function onYouTubeIframeAPIReady (youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
             })
 
-            $('.dataRow.videoRow').on('click', () => {
+            $('.dataRow.videoRow').on('click', function () {
               player.stopVideo()
             })
 
-            $('.dataRow.panel').on('click', () => {
+            $('.dataRow.panel').on('click', function () {
               player.stopVideo()
             })
           }
         }
       },
-      data => {
+      function (data) {
         console.log('errorData: ' + data)
       }
     )
