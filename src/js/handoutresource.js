@@ -333,7 +333,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
 
         //  android 系統的使用者
         //  navigator.userAgent.match(/android/i)
-        if (true) {
+        if (navigator.userAgent.match(/android/i)) {
           if (location.hash) {
             $(document).ready(function () {
               let qRcodeId = location.hash
