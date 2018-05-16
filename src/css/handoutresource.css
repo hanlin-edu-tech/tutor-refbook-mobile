@@ -60,14 +60,13 @@
 
 .dataRow.mp3Row audio {
   width: 100%;
-  margin-top: 100px;
-  z-index: 2;
-  /* -moz-box-shadow: 2px 2px 4px 0px #006773;
+  min-height: 50%
+  -moz-box-shadow: 2px 2px 4px 0px #006773;
   -webkit-box-shadow: 2px 2px 4px 0px #006773;
   box-shadow: 2px 2px 4px 0px #006773;
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px; */
+  border-radius: 5px 5px 5px 5px;
 }
 
 .dataRow.mp3Row div {
