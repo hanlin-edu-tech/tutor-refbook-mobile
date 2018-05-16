@@ -333,7 +333,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
 
         //  android 系統的使用者
         //  navigator.userAgent.match(/android/i)
-        if (true) {
+        if (navigator.userAgent.match(/android/i)) {
           function onYouTubeIframeAPIReady (youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
@@ -385,6 +385,9 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
 
               $(tbodyId).click()
               $(qRcodeId).click()
+
+              /* qrcode 掃到的題組彈至網頁最上方 */
+              location.href = qRcodeId
 
               if (thisBtnTarget.css('display') === 'none') {
                 fullscreenBtn.hide()
@@ -457,8 +460,11 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
               let qRcodeId = location.hash
               let tbodyId = qRcodeId.split('_')[0]
               let youtubeId = $(qRcodeId).attr('data-resourceIds')
+
               $(tbodyId).click()
               $(qRcodeId).click()
+              /* qrcode 掃到的題組彈至網頁最上方 */
+              location.href = qRcodeId
               onYouTubeIframeAPIReady(youtubeId)
             })
           }
