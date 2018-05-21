@@ -85,3 +85,10 @@
 .table .advertising {
   cursor: pointer;
 }
+
+.ehanlinLogo {
+  top: 0px;
+  position: fixed;
+  cursor: pointer;
+  z-index: 1;
+}

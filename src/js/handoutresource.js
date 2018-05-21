@@ -284,6 +284,10 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
           preElement = event.target
         })
 
+        /* 點擊logo導頁 */
+        $('.ehanlinLogo').on('click', () => {
+          window.location.href = 'https://www.ehanlin.com.tw'
+        })
         $('.dataRow.panel').on('click', function () {
           // let getId = $(this)
           //   .attr('id')
