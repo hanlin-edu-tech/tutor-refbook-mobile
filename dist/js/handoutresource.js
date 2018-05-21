@@ -286,7 +286,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
 
         /* 點擊logo導頁 */
         $('.ehanlinLogo').on('click', () => {
-          window.location.href = 'https://www.ehanlin.com.tw'
+          window.location.href = 'https://www.ehanlin.com.tw/courses_map.html'
         })
         $('.dataRow.panel').on('click', function () {
           // let getId = $(this)
