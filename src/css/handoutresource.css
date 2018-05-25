@@ -22,6 +22,7 @@
 .table .dataRow.mp3Row,
 .table .dataRow.pngRow,
 .table .dataRow.pdfRow,
+.table .dataRow.imgRow,
 .table .advertising .advertising-text {
   cursor: pointer;
   font-size: 70px;

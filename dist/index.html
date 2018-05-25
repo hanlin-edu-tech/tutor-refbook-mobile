@@ -43,7 +43,11 @@
                                 ${val.resourceName}
                             </td>
                             {{else}}
-                                <td id="${val.qRcode}" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
+                                <!-- <td id="${val.qRcode}" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
+                                    ${val.resourceName} ${val.resourceDescription}
+                                </td> -->
+                                <td id="${val.qRcode}" style="padding-left:5%" class="dataRow imgRow" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
+                                    <i class="${val.resourceClass}"> </i>
                                     ${val.resourceName} ${val.resourceDescription}
                                 </td>
                                 {{/if}}
@@ -56,12 +60,12 @@
                             </td>
                         </tr>
                         {{/each}}
-                        <tr class="advertising">
+                        <!-- <tr class="advertising">
                             <td>
                                 <span class="advertising-text">更多影片</span>
                                 <img style="display:none;" src="./img/寶典網頁廣告圖.jpg">
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
             </tbody>
             {{/if}}
@@ -120,6 +124,11 @@
         </div>
     </script>
 
+    <script id="img-template" type="text/x-jquery-tmpl">
+        <div id="${data.id}" class="collapse">
+            <img class="advertising-img" style="max-width: 100%; height:auto;" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/img/%E5%AF%B6%E5%85%B8%E7%B6%B2%E9%A0%81%E5%BB%A3%E5%91%8A%E5%9C%96.jpg">
+        </div>
+    </script>
 
     <script id="comming-template" type="text/x-jquery-tmpl">
         <div id="${data.id}" class="collapse">

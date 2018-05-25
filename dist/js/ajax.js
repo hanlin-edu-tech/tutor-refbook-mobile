@@ -8,7 +8,7 @@ define(['jquery'], function ($) {
       url: url,
       data: param,
       contentType: 'application/json; charset=UTF-8',
-      dataType: 'json',
+      dataType: 'jsonp',
       cache: false,
       crossDomain: true,
       success: success,
