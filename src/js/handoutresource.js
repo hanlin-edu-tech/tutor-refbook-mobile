@@ -56,22 +56,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
     iframeResize()
   }
 
-  function ClickMoreVideo () {
-    var data = getData(this)
-    var temp = $('#img-template').tmpl({
-      data: data
-    })
-    temp.find('img').load(iframeResize)
-    temp.appendTo(this)
-    if ($.isEmptyObject(preElement)) {
-      preElement = this
-    }
-    $('.advertising-img').on('click', () => {
-      window.open('https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html')
-    })
-    iframeResize()
-  }
-
   function clickCommingSoon () {
     var data = getData(this)
     var temp = $('#comming-template').tmpl({
@@ -139,10 +123,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
       case '單字朗讀':
         element.resourceClass = 'flaticon-mp3-listen'
         element.resourceTemplate = 'mp3'
-        break
-      case '更多影片':
-        element.resourceClass = 'flaticon-video-solving'
-        element.resourceTemplate = 'video'
         break
       default:
         element.resourceClass = 'flaticon-video-solving'
@@ -288,7 +268,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
           temp.appendTo('#div_demo')
           $('#div_demo .videoRow').one('click', clickVideo)
           $('#div_demo .pngRow').one('click', clickPng)
-          $('#div_demo .imgRow').one('click', ClickMoreVideo)
           $('#div_demo .pdfRow').one('click', clickPdf)
           $('#div_demo .mp3Row').one('click', clickMp3)
           $('#div_demo .commingSoon').one('click', clickCommingSoon)
@@ -337,6 +316,9 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
         })
         $('.dataRow.videoRow').on('click', function () {
           $('.advertising img').css('display', 'none')
+          $(this).css('color', '#848484')
+        })
+        $('.dataRow.commingSoon').on('click', function () {
           $(this).css('color', '#848484')
         })
         $('.advertising').on('click', function () {

@@ -9,9 +9,9 @@
   -webkit-user-cursor: none;
 }
 
-.commingSoon {
+/*.commingSoon {
   color: gray;
-}
+}*/
 
 .table .info {
   font-size: 82px;
@@ -22,7 +22,7 @@
 .table .dataRow.mp3Row,
 .table .dataRow.pngRow,
 .table .dataRow.pdfRow,
-.table .dataRow.imgRow,
+.table .dataRow.commingSoon,
 .table .advertising .advertising-text {
   cursor: pointer;
   font-size: 70px;
