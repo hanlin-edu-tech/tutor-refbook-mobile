@@ -431,6 +431,10 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
             })
           }
 
+          $('.junior-advertising').on('click', () => {
+            window.open('https://www.ehanlin.com.tw/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E4%B8%AD%E6%9C%83%E8%80%83%E7%B8%BD%E8%A4%87%E7%BF%92/SalesPlans.html')
+          })
+
           // 其他系統的使用者
         } else {
           function onYouTubeIframeAPIReady (youtubeId) {
@@ -475,6 +479,10 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
               onYouTubeIframeAPIReady(youtubeId)
             })
           }
+
+          $('.junior-advertising').on('click', () => {
+            window.open('https://www.ehanlin.com.tw/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E4%B8%AD%E6%9C%83%E8%80%83%E7%B8%BD%E8%A4%87%E7%BF%92/SalesPlans.html')
+          })
         }
       },
       function (data) {
