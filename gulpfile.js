@@ -1,38 +1,14 @@
 var gulp = require('gulp')
-var rename = require('gulp-rename')
 var fs = require('fs')
-var es = require('event-stream')
 var del = require('del')
-var path = require('path')
 var Q = require('q')
 var util = require('gulp-template-util')
 var babel = require('gulp-babel')
 var replace = require('gulp-replace')
-var connect = require('gulp-connect')
 var apiHost = '/handoutresource/api/Find?'
 var host = 'https://test.ehanlin.com.tw'
 var S3 =
   'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/'
-
-function buildStyle () {
-  return es.map(function (file, cb) {
-    less.render(
-      file.contents.toString(), {
-        paths: [],
-        filename: file.path,
-        compress: false
-      },
-      function (error, result) {
-        if (error != null) {
-          console.log(error)
-          throw error
-        }
-        file.contents = new Buffer(result.css)
-        cb(null, file)
-      }
-    )
-  })
-}
 
 function libTask (dest) {
   return function () {
@@ -174,8 +150,7 @@ gulp.task('package', function () {
   }).then(function () {
     return Q.all([
       util.logStream(libTask('dist/lib')),
-      util.logStream(copyStaticTask('dist')),
-      util.logStream(styleTask('dist/css'))
+      util.logStream(copyStaticTask('dist'))
     ])
   })
 
