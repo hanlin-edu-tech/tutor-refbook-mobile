@@ -67,6 +67,9 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
       preElement = this
     }
     iframeResize()
+    $('.more-video-advertising').on('click', () => {
+      window.open('https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html')
+    })
   }
 
   function getData (data) {
@@ -287,9 +290,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
         /* 點擊logo導頁 */
         $('.ehanlinLogo').on('click', () => {
           window.location.href = 'https://www.ehanlin.com.tw/courses_map.html'
-        })
-        $('.more-video-advertising').on('click', () => {
-          window.open('https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html')
         })
         $('.dataRow.panel').on('click', function () {
           // let getId = $(this)
