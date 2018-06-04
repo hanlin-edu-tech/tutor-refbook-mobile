@@ -330,13 +330,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
             thisImg.css('display', 'none')
           }
         })
-        $('.advertising img').on('click', function () {
-          window.open(
-            '/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html',
-            '社會段考特訓e名師'
-          )
-          return false
-        })
 
         //  android 系統的使用者
         //  navigator.userAgent.match(/android/i)
