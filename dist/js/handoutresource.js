@@ -288,6 +288,9 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
         $('.ehanlinLogo').on('click', () => {
           window.location.href = 'https://www.ehanlin.com.tw/courses_map.html'
         })
+        $('.more-video-advertising').on('click', () => {
+          window.open('https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html')
+        })
         $('.dataRow.panel').on('click', function () {
           // let getId = $(this)
           //   .attr('id')
@@ -375,9 +378,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
             $('.junior-advertising').on('click', () => {
               window.open('https://www.ehanlin.com.tw/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E4%B8%AD%E6%9C%83%E8%80%83%E7%B8%BD%E8%A4%87%E7%BF%92/SalesPlans.html')
             })
-            $('.more-video-advertising').on('click', () => {
-              window.open('https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html')
-            })
           })
 
           if (location.hash) {
@@ -463,9 +463,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
 
             $('.junior-advertising').on('click', () => {
               window.open('https://www.ehanlin.com.tw/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E4%B8%AD%E6%9C%83%E8%80%83%E7%B8%BD%E8%A4%87%E7%BF%92/SalesPlans.html')
-            })
-            $('.more-video-advertising').on('click', () => {
-              window.open('https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html')
             })
           })
 
