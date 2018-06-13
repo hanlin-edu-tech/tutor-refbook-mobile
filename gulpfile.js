@@ -1,37 +1,28 @@
-var gulp = require('gulp')
-var fs = require('fs')
-var del = require('del')
-var Q = require('q')
-var util = require('gulp-template-util')
-var babel = require('gulp-babel')
-var replace = require('gulp-replace')
-var apiHost = '/handoutresource/api/Find?'
-var host = 'https://test.ehanlin.com.tw'
-var S3 =
-  'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/'
+const gulp = require('gulp')
+const fs = require('fs')
+const del = require('del')
+const Q = require('q')
+const util = require('gulp-template-util')
+const babel = require('gulp-babel')
+const replace = require('gulp-replace')
+const gcPub = require('gulp-gcloud-publish')
+const Storage = require('@google-cloud/storage')
 
-function libTask (dest) {
-  return function () {
-    var packageJson = JSON.parse(
-      fs.readFileSync('package.json', 'utf8').toString()
-    )
-    if (!packageJson.dependencies) {
-      packageJson.dependencies = {}
-    }
-    var webLibModules = []
-    for (var module in packageJson.dependencies) {
-      webLibModules.push('node_modules/' + module + '/**/*')
-    }
-    return gulp
-      .src(webLibModules, {
-        base: 'node_modules/'
-      })
-      .pipe(gulp.dest(dest))
-  }
-}
+const apiHost = '/handoutresource/api/Find?'
+const host = 'https://test.ehanlin.com.tw'
+const S3 = 'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/'
+let bucketName = 'tutor-events'
+let projectId = 'tutor-204108'
+let keyFilename = './tutor.json'
+let projectName = 'collection_107'
 
-function copyStaticTask (dest) {
-  return function () {
+const storage = new Storage({
+  projectId: projectId,
+  keyFilename: keyFilename
+})
+
+let copyStaticTask = dest => {
+  return () => {
     return gulp
       .src(
       [
@@ -51,16 +42,13 @@ function copyStaticTask (dest) {
   }
 }
 
-function changeTag () {
+let changeTag = () => {
   return gulp
     .src(['src/index.html'], {
       base: 'src'
     })
     .pipe(
-      replace(/\/(event-collection_107)\/(\d\.\d\.\d{2}-\w+)/g, function (
-        match,
-        p1
-      ) {
+      replace(/\/(event-collection_107)\/(\d\.\d\.\d{2}-\w+)/g, (match, p1) => {
         let changeTag = gulp.env.tag
         return `/${p1}/${changeTag}`
       })
@@ -68,9 +56,9 @@ function changeTag () {
     .pipe(gulp.dest('src'))
 }
 
-function testChangeToDevURL () {
-  var url = S3 + '(\\d.\\d.\\d{1,2}-\\w+)'
-  var regExp = new RegExp(url, 'g')
+let testChangeToDevURL = () => {
+  let url = S3 + '(\\d.\\d.\\d{1,2}-\\w+)'
+  let regExp = new RegExp(url, 'g')
   return gulp
     .src(['src/js/handoutresource.js'], {
       base: 'src'
@@ -85,7 +73,7 @@ function testChangeToDevURL () {
     .pipe(gulp.dest('src'))
 }
 
-function devChangeToTestURL () {
+let devChangeToTestURL = () => {
   return gulp
     .src(['src/js/handoutresource.js'], {
       base: 'src'
@@ -100,9 +88,9 @@ function devChangeToTestURL () {
     .pipe(gulp.dest('src'))
 }
 
-function testChangeToProduction () {
-  var url = S3 + '(\\d.\\d.\\d{1,2}-\\w+)'
-  var regExp = new RegExp(url, 'g')
+let testChangeToProduction = () => {
+  let url = S3 + '(\\d.\\d.\\d{1,2}-\\w+)'
+  let regExp = new RegExp(url, 'g')
   return gulp
     .src(['src/index.html'], {
       base: 'src'
@@ -110,9 +98,9 @@ function testChangeToProduction () {
     .pipe(replace(regExp, `${S3}${gulp.env.tag}/js`))
 }
 
-function productionChangeToTest () {
-  var url = S3 + '(\\d.\\d.\\d{1,2})'
-  var regExp = new RegExp(url, 'g')
+let productionChangeToTest = () => {
+  let url = S3 + '(\\d.\\d.\\d{1,2})'
+  let regExp = new RegExp(url, 'g')
   return gulp
     .src(['src/index.html'], {
       base: 'src'
@@ -122,17 +110,53 @@ function productionChangeToTest () {
     )
 }
 
-function cleanTask () {
+let cleanTask = () => {
   return del(['dist', ''])
 }
 
-gulp.task('lib', libTask('src/lib'))
+let removeEmptyFiles = () => {
+  let array = ['img', 'css', 'lib', 'js']
+  array.forEach(emptyFiles => {
+    storage
+      .bucket(bucketName)
+      .file(`/event/${projectName}/${emptyFiles}`)
+      .delete()
+      .then(() => {
+        console.log(`gs://${bucketName}/${emptyFiles} deleted.`)
+      })
+      .catch(err => {
+        console.error('ERROR:', err)
+      })
+  })
+}
+
+gulp.task('uploadGcp', () => {
+  return gulp.src(['dist/**/*'])
+    .pipe(gcPub({
+      bucket: bucketName,
+      keyFilename: keyFilename,
+      projectId: projectId,
+      base: `/event/${projectName}`,
+      public: true,
+      transformDestination: path => {
+        return path
+      },
+      metadata: {
+        cacheControl: 'max-age=315360000, no-transform, public'
+      }
+    }))
+})
+
+gulp.task('removeEmptyFiles', () => {
+  removeEmptyFiles()
+})
+
 gulp.task('changeTag', changeTag)
 gulp.task('changeDev', testChangeToDevURL) // 正常運作
 gulp.task('changeTest', devChangeToTestURL) // 正常運作
 gulp.task('testChangeProduction', testChangeToProduction)
 gulp.task('productionChangeTest', productionChangeToTest)
-gulp.task('js', function () {
+gulp.task('js', () => {
   return gulp
     .src('src/js/handoutresource.js', {
       base: 'src'
@@ -143,16 +167,14 @@ gulp.task('js', function () {
     .pipe(gulp.dest('dist'))
 })
 
-gulp.task('package', function () {
-  var deferred = Q.defer()
-  Q.fcall(function () {
+gulp.task('package', () => {
+  let deferred = Q.defer()
+  Q.fcall(() => {
     return util.logPromise(cleanTask)
-  }).then(function () {
+  }).then(() => {
     return Q.all([
-      util.logStream(libTask('dist/lib')),
       util.logStream(copyStaticTask('dist'))
     ])
   })
-
   return deferred.promise
 })

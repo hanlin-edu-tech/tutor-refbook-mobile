@@ -4,7 +4,7 @@ const path = require('path')
 const bucketName = `tutor-events`
 const projectId = `tutor-204108`
 const projectName = `collection_107`
-const gcpKeyFile = `./tutor-204108.json`
+const gcpKeyFile = `./tutor.json`
 
 const storage = new Storage({
   projectId: projectId,
