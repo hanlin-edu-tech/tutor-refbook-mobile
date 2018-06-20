@@ -337,7 +337,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
         //  android 系統的使用者
         //  navigator.userAgent.match(/android/i)
         if (navigator.userAgent.match(/android/i)) {
-          document.getElementById('.ehanlinLogo').style.height = ''
           function onYouTubeIframeAPIReady (youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
@@ -434,7 +433,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
 
           // ios系統的使用者
         } else if (navigator.userAgent.match(/iphone/i)) {
-          document.getElementById('.ehanlinLogo').style.height = ''
           function onYouTubeIframeAPIReady (youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
@@ -483,6 +481,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
           }
           // 其他系統的使用者
         } else {
+          document.getElementById('.ehanlinLogo').style.height = '15%'
           function onYouTubeIframeAPIReady (youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
