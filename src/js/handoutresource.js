@@ -482,7 +482,6 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
           // 其他系統的使用者
         } else {
           $('.ehanlinLogo').css('height', '15%')
-          console.log('1')
           function onYouTubeIframeAPIReady (youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
