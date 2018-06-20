@@ -337,6 +337,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
         //  android 系統的使用者
         //  navigator.userAgent.match(/android/i)
         if (navigator.userAgent.match(/android/i)) {
+          document.getElementById('.ehanlinLogo').style.height = ''
           function onYouTubeIframeAPIReady (youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
@@ -431,6 +432,55 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
             })
           }
 
+          // ios系統的使用者
+        } else if (navigator.userAgent.match(/iphone/i)) {
+          document.getElementById('.ehanlinLogo').style.height = ''
+          function onYouTubeIframeAPIReady (youtubeId) {
+            let player = new YT.Player(youtubeId, {
+              videoId: youtubeId
+            })
+
+            $('.dataRow.videoRow').on('click', function () {
+              player.stopVideo()
+            })
+
+            $('.dataRow.panel').on('click', function () {
+              player.stopVideo()
+            })
+          }
+
+          $('.dataRow.videoRow').on('click', function (event) {
+            let youtubeId = event.target.getAttribute('data-resourceIds')
+            let youtubeIds = youtubeId.split(',')
+            let iframe
+            let iframeSrc
+
+            /* 針對題組影片 如：一個題組有多個影片 */
+            youtubeIds.forEach(ele => {
+              iframe = document.getElementById(ele)
+              iframeSrc = iframe.src
+              iframe.src = iframeSrc
+              onYouTubeIframeAPIReady(ele)
+            })
+
+            $('.junior-advertising').on('click', () => {
+              window.open('https://www.ehanlin.com.tw/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E4%B8%AD%E6%9C%83%E8%80%83%E7%B8%BD%E8%A4%87%E7%BF%92/SalesPlans.html')
+            })
+          })
+
+          if (window.location.hash) {
+            $(document).ready(function () {
+              let qRcodeId = window.location.hash
+              let tbodyId = qRcodeId.split('_')[0]
+              let youtubeId = $(qRcodeId).attr('data-resourceIds')
+
+              $(tbodyId).click()
+              $(qRcodeId).click()
+              /* qrcode 掃到的題組彈至網頁最上方 */
+              window.location.href = qRcodeId
+              onYouTubeIframeAPIReady(youtubeId)
+            })
+          }
           // 其他系統的使用者
         } else {
           function onYouTubeIframeAPIReady (youtubeId) {
@@ -466,16 +516,16 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
             })
           })
 
-          if (location.hash) {
+          if (window.location.hash) {
             $(document).ready(function () {
-              let qRcodeId = location.hash
+              let qRcodeId = window.location.hash
               let tbodyId = qRcodeId.split('_')[0]
               let youtubeId = $(qRcodeId).attr('data-resourceIds')
 
               $(tbodyId).click()
               $(qRcodeId).click()
               /* qrcode 掃到的題組彈至網頁最上方 */
-              location.href = qRcodeId
+              window.location.href = qRcodeId
               onYouTubeIframeAPIReady(youtubeId)
             })
           }
