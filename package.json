@@ -13,9 +13,12 @@
     "del": "^2.2.2",
     "event-stream": "^3.3.4",
     "gulp": "^3.9.1",
+    "gulp-cache": "^1.0.2",
+    "gulp-imagemin": "^4.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.6.1",
     "gulp-template-util": "0.0.2",
+    "imagemin-pngquant": "^5.1.0",
     "path": "^0.12.7",
     "pug": "2.0.0-rc.2",
     "q": "^1.5.1"

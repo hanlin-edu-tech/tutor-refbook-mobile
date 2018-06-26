@@ -1,25 +1,25 @@
-const gulp = require('gulp')
+const Q = require('q')
 const fs = require('fs')
 const del = require('del')
-const Q = require('q')
-const util = require('gulp-template-util')
+const gulp = require('gulp')
+const cache = require('gulp-cache')
 const babel = require('gulp-babel')
 const replace = require('gulp-replace')
+const imageMin = require('gulp-imagemin')
+const util = require('gulp-template-util')
 const gcPub = require('gulp-gcloud-publish')
-const Storage = require('@google-cloud/storage')
+const pngquant = require('imagemin-pngquant')
+const templateUtil = require('gulp-template-util')
 
 const apiHost = '/handoutresource/api/Find?'
 const host = 'https://test.ehanlin.com.tw'
 const S3 = 'https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/event-collection_107/'
-let bucketName = 'tutor-events'
-let projectId = 'tutor-204108'
-let keyFilename = './tutor.json'
-let projectName = 'collection_107'
 
-const storage = new Storage({
-  projectId: projectId,
-  keyFilename: keyFilename
-})
+let bucketNameForTest = 'tutor-events-test'
+let bucketNameForProd = 'tutor-events'
+let projectId = 'tutor-204108'
+let keyFilename = 'tutor.json'
+let projectName = 'event/collection_107/'
 
 let copyStaticTask = dest => {
   return () => {
@@ -114,42 +114,46 @@ let cleanTask = () => {
   return del(['dist', ''])
 }
 
-let removeEmptyFiles = () => {
-  let array = ['img', 'css', 'lib', 'js']
-  array.forEach(emptyFiles => {
-    storage
-      .bucket(bucketName)
-      .file(`/event/${projectName}/${emptyFiles}`)
-      .delete()
-      .then(() => {
-        console.log(`gs://${bucketName}/${emptyFiles} deleted.`)
-      })
-      .catch(err => {
-        console.error('ERROR:', err)
-      })
-  })
+let minifyImage = sourceImage => {
+  return gulp
+    .src(sourceImage, {
+      base: './src'
+    })
+    .pipe(cache(imageMin({
+      use: [pngquant({
+        speed: 7
+      })]
+    })))
+    .pipe(gulp.dest('./dist'))
 }
 
-gulp.task('uploadGcp', () => {
-  return gulp.src(['dist/**/*'])
+let uploadGCS = bucketName => {
+  return gulp
+    .src([
+      './dist/*.html',
+      './dist/css/**/*.css',
+      './dist/js/**/*.js',
+      './dist/lib/**/*.@(js|json|css|map|svg|eot|ttf|woff|woff2)',
+      './dist/img/**/*.@(png|jpg|svg|gif)'
+    ], {
+      base: `${__dirname}/dist/`
+    })
     .pipe(gcPub({
       bucket: bucketName,
       keyFilename: keyFilename,
+      base: projectName,
       projectId: projectId,
-      base: `/event/${projectName}`,
       public: true,
-      transformDestination: path => {
-        return path
-      },
       metadata: {
-        cacheControl: 'max-age=315360000, no-transform, public'
+        cacheControl: 'private, no-transform'
       }
     }))
-})
+}
 
-gulp.task('removeEmptyFiles', () => {
-  removeEmptyFiles()
-})
+/* upload to gcp test */
+gulp.task('uploadGcpTest', uploadGCS.bind(uploadGCS, bucketNameForTest))
+/* upload to gcp prod */
+gulp.task('uploadGcpProd', uploadGCS.bind(uploadGCS, bucketNameForProd))
 
 gulp.task('changeTag', changeTag)
 gulp.task('changeDev', testChangeToDevURL) // 正常運作
@@ -171,10 +175,16 @@ gulp.task('package', () => {
   let deferred = Q.defer()
   Q.fcall(() => {
     return util.logPromise(cleanTask)
-  }).then(() => {
-    return Q.all([
-      util.logStream(copyStaticTask('dist'))
-    ])
   })
+    .then(() => {
+      return Q.all([
+        templateUtil.logStream(minifyImage.bind(minifyImage, './src/img/**/*.png'))
+      ])
+    })
+    .then(() => {
+      return Q.all([
+        util.logStream(copyStaticTask('dist'))
+      ])
+    })
   return deferred.promise
 })
