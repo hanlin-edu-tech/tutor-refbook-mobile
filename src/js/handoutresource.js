@@ -138,8 +138,14 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
       if (resources[i].qRcode) {
         var index = resources[i].qRcode.split('_')[0]
         if (qrcodeLists.indexOf(index) === -1) {
-          qrcodeLists.push(index)
-          return index
+          if (index.match('s2')) {
+            let index = resources[i].qRcode.split('_')[1]
+            qrcodeLists.push(index)
+            return index
+          } else {
+            qrcodeLists.push(index)
+            return index
+          }
         } else {
           continue
         }
@@ -158,7 +164,8 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
     element.resources.forEach(fillIconInternal)
     element.tbodyIndex = getTbodyIndex(element.resources)
     if (!element.tbodyIndex) {
-      element.tbodyIndex = 'tb' + index
+      // element.tbodyIndex = 'tb' + index
+      element.tbodyIndex = 's2' + '_' + (parseInt(index) + 1)
     }
   }
 
@@ -383,12 +390,19 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
           if (location.hash) {
             $(document).ready(function () {
               let qRcodeId = location.hash
-              let tbodyId = qRcodeId.split('_')[0]
-              let youtubeId = $(qRcodeId).attr('data-resourceIds')
+              let tbodyId
+              let youtubeId
               let fullscreenBtn = $('tr.fullscreen-tr')
               let thisBtnTarget = $(qRcodeId)
                 .parents('tr')
                 .next('tr.fullscreen-tr')
+
+              if (qRcodeId.match('s')) {
+                tbodyId = '#' + qRcodeId.split('_')[1]
+              } else {
+                tbodyId = qRcodeId.split('_')[0]
+              }
+              youtubeId = $(qRcodeId).attr('data-resourceIds')
 
               $(tbodyId).click()
               $(qRcodeId).click()
@@ -469,8 +483,14 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
           if (window.location.hash) {
             $(document).ready(function () {
               let qRcodeId = window.location.hash
-              let tbodyId = qRcodeId.split('_')[0]
-              let youtubeId = $(qRcodeId).attr('data-resourceIds')
+              let tbodyId
+              let youtubeId
+              if (qRcodeId.match('s')) {
+                tbodyId = '#' + qRcodeId.split('_')[1]
+              } else {
+                tbodyId = qRcodeId.split('_')[0]
+              }
+              youtubeId = $(qRcodeId).attr('data-resourceIds')
 
               $(tbodyId).click()
               $(qRcodeId).click()
@@ -482,6 +502,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
           // 其他系統的使用者
         } else {
           $('.ehanlinLogo').css('height', '15%')
+
           function onYouTubeIframeAPIReady (youtubeId) {
             let player = new YT.Player(youtubeId, {
               videoId: youtubeId
@@ -518,8 +539,14 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
           if (window.location.hash) {
             $(document).ready(function () {
               let qRcodeId = window.location.hash
-              let tbodyId = qRcodeId.split('_')[0]
-              let youtubeId = $(qRcodeId).attr('data-resourceIds')
+              let tbodyId
+              let youtubeId
+              if (qRcodeId.match('s')) {
+                tbodyId = '#' + qRcodeId.split('_')[1]
+              } else {
+                tbodyId = qRcodeId.split('_')[0]
+              }
+              youtubeId = $(qRcodeId).attr('data-resourceIds')
 
               $(tbodyId).click()
               $(qRcodeId).click()
