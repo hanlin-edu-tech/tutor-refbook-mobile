@@ -68,7 +68,7 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
     }
     iframeResize()
     $('.more-video-advertising').on('click', () => {
-      window.open('https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html')
+      window.open('https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s2_so_training_et/SalesPlans.html')
     })
   }
 
