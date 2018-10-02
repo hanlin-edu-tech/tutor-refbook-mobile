@@ -1,5 +1,4 @@
 const Q = require('q')
-const fs = require('fs')
 const del = require('del')
 const gulp = require('gulp')
 const cache = require('gulp-cache')
@@ -19,7 +18,7 @@ let bucketNameForTest = 'tutor-events-test'
 let bucketNameForProd = 'tutor-events'
 let projectId = 'tutor-204108'
 let keyFilename = 'tutor.json'
-let projectName = 'event/collection_107/'
+let projectName = 'event/collection/'
 
 let copyStaticTask = dest => {
   return () => {
