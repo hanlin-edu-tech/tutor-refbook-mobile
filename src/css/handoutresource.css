@@ -23,6 +23,7 @@
 .table .dataRow.pngRow,
 .table .dataRow.pdfRow,
 .table .dataRow.commingSoon,
+.table .dataRow.commingSoon2,
 .table .advertising .advertising-text {
   cursor: pointer;
   font-size: 70px;
