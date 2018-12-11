@@ -21,6 +21,12 @@
             <img class="ehanlinLogo" src="./img/339x40.png">
         </div>
         <table class="table">
+            <tr id="download-all-mp3" style="display: none;">
+                <td class="info">
+                    <a target="_blank">音檔下載</a>
+                </td>
+            </tr>
+
             {{each(index,dataVal) data}}
             <tr id="${tbodyIndex}" class="dataRow panel" data-target="#tbody${dataVal.tbodyIndex}" data-parentgroup='#tbody${dataVal.tbodyIndex}'>
                 <td class="info">
