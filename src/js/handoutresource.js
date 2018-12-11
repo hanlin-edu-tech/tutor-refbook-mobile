@@ -256,6 +256,17 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
     })
   }
 
+  function showMp3DownloadButton(params) {
+    let downloadLink = `https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/${params.year}/${params.type}/${params.subject}/mp3/all.zip`
+    $.ajax({
+      type: "HEAD",
+      url: downloadLink,
+      success: function() {
+          $("#download-all-mp3").show().find("a").attr("href", downloadLink)
+      }
+    })
+  }
+
   var init = function () {
     fillQueryString()
     var query =
@@ -301,6 +312,8 @@ define(['jquery', 'ajaxGet', 'jqueryTemplate'], function ($, ajaxGet) {
           if (location.hash) {
             move()
           }
+
+          showMp3DownloadButton(urlParams)
         }
 
         iframeResize()
