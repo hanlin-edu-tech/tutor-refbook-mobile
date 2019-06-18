@@ -143,6 +143,10 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
                 element.resourceClass = "flaticon-mp3-listen";
                 element.resourceTemplate = "mp3";
                 break;
+            case "更多影片":
+                element.resourceClass = "flaticon-png-translate";
+                element.resourceTemplate = "png";
+                break;
             default:
                 element.resourceClass = "flaticon-video-solving";
                 break;

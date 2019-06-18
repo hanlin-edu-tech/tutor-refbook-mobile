@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
         <script data-main="./js/main" src="./js/require.js"></script>
         <link type="text/css" rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css" />
-        <link type="text/css" rel="stylesheet" href="./css/icon/flaticon.css">
-        <link type="text/css" rel="stylesheet" href="./css/handoutresource.css">
+        <link type="text/css" rel="stylesheet" href="./css/icon/flaticon.css" />
+        <link type="text/css" rel="stylesheet" href="./css/handoutresource.css" />
     </head>
 
     <body class="body" style="margin-left:0px;">
         <div class="contianer">
             <div id="div_demo"></div>
         </div>
-
     </body>
     <script id="resource" type="text/x-jquery-tmpl">
         <div style="height:115px;">
@@ -72,12 +70,6 @@
                             </td>
                         </tr>
                         {{/each}}
-                        <!-- <tr class="advertising">
-                            <td>
-                                <span class="advertising-text">更多影片</span>
-                                <img style="display:none;" src="./img/寶典網頁廣告圖.jpg">
-                            </td>
-                        </tr> -->
                     </tbody>
             </tbody>
             {{/if}}
@@ -96,14 +88,13 @@
             <hr size="3px" align="center" width="100%">
             {{/if}}
 
-            {{if !(data.id.match(/LEAR/g) || data.id.match(/REV/g) || data.id.match(/6SR1/g))}}
+            {{if !(data.id.match(/LEAR/g) || data.id.match(/REV/g) || data.id.match(/6SR1/g) || data.id.match(/READ/g))}}
             <img class="junior-advertising" date-status="${data.id}" style="width:100%" src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/img/juniorAdvertising.gif">
             {{/if}}
 
             {{/each}}
         </div>
     </script>
-
 
     <script id="mp3-template" type="text/x-juqery-tmpl">
         <div id="${data.id}" class="collapse">
@@ -118,7 +109,6 @@
             {{/each}}
         </div>
     </script>
-
 
     <script id="png-template" type="text/x-jquery-tmpl">
         <div id="${data.id}" class="collapse">
@@ -167,14 +157,12 @@
         function gtag() {
             dataLayer.push(arguments);
         }
-        gtag('js', new Date());
+        gtag("js", new Date());
 
-        gtag('config', 'UA-31662275-1', {
-            'page_path': window.location.hostname + window.location.pathname + window.location.search + window.location
-                .hash
+        gtag("config", "UA-31662275-1", {
+            page_path: window.location.hostname + window.location.pathname + window.location.search + window.location.hash
         });
     </script>
 
     <!-- <script src="./js/googlega.js"></script> -->
-
 </html>
