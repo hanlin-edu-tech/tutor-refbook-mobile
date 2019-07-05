@@ -4,6 +4,24 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     const tablePrefix = "tb";
     var qrcodeLists = [];
 
+    function advImg(type) {
+        // 國小自修 廣告連結
+        let six = `https://www.ehanlin.com.tw/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E5%B0%8F%E8%B3%87%E5%84%AA/SalesPlans.html`;
+        // 國中文言文閱讀 廣告連結
+        let read = ``;
+        let StringUrl;
+
+        switch (type) {
+            case "國小自修":
+                StringUrl = six;
+                break;
+            case "國中文言閱讀":
+                StringUrl = read;
+                break;
+        }
+        return StringUrl;
+    }
+
     function clickVideo() {
         var data = getData(this);
         var temp = $("#video-template").tmpl({
@@ -30,6 +48,8 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
 
     function clickPng() {
         var data = getData(this);
+        var type = data.type;
+        data["advurl"] = advImg(type);
         var temp = $("#png-template").tmpl({
             data: data
         });

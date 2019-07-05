@@ -113,9 +113,15 @@
     <script id="png-template" type="text/x-jquery-tmpl">
         <div id="${data.id}" class="collapse">
             {{each(idOrd,pngId) data.resourceIds}}
-            <img src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/${data.year}/${data.type}/${data.subject}/png/${pngId}.png"> {{if idOrd != data.resourceIds.length-1}}
+
+            <a href="${data.advurl}">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/${data.year}/${data.type}/${data.subject}/png/${pngId}.png">
+            </a>
+
+            {{if idOrd != data.resourceIds.length-1}}
             <hr size="3px" align="center" width="100%">
             {{/if}}
+
             {{/each}}
         </div>
     </script>
