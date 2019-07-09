@@ -4,11 +4,12 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     const tablePrefix = "tb";
     var qrcodeLists = [];
 
+    // 放置廣告圖連結位址
     function advImg(type) {
         // 國小自修 廣告連結
         let six = `https://www.ehanlin.com.tw/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E5%B0%8F%E8%B3%87%E5%84%AA/SalesPlans.html`;
         // 國中文言文閱讀 廣告連結
-        let read = ``;
+        let read = `https://www.ehanlin.com.tw/type/ONLINE/id/y108_jhs_rev_pcreading1-special_et/SalesPlans.html`;
         let StringUrl;
 
         switch (type) {
