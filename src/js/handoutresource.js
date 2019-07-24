@@ -88,26 +88,26 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
             preElement = this;
         }
         iframeResize();
-        $(".more-video-advertising").on("click", () => {
-            window.open("https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html");
-        });
+        // $(".more-video-advertising").on("click", () => {
+        //     window.open("https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html");
+        // });
     }
 
-    function clickCommingSoon2() {
-        var data = getData(this);
-        var temp = $("#comming-template2").tmpl({
-            data: data
-        });
-        temp.find("img").load(iframeResize);
-        temp.appendTo(this);
-        if ($.isEmptyObject(preElement)) {
-            preElement = this;
-        }
-        iframeResize();
-        $(".more-video-advertising2").on("click", () => {
-            window.open("https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s2_so_training_et/SalesPlans.html");
-        });
-    }
+    // function clickCommingSoon2() {
+    //     var data = getData(this);
+    //     var temp = $("#comming-template2").tmpl({
+    //         data: data
+    //     });
+    //     temp.find("img").load(iframeResize);
+    //     temp.appendTo(this);
+    //     if ($.isEmptyObject(preElement)) {
+    //         preElement = this;
+    //     }
+    //     iframeResize();
+    //     $(".more-video-advertising2").on("click", () => {
+    //         window.open("https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s2_so_training_et/SalesPlans.html");
+    //     });
+    // }
 
     function getData(data) {
         var returnData = {};
@@ -316,7 +316,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
                     $("#div_demo .pdfRow").one("click", clickPdf);
                     $("#div_demo .mp3Row").one("click", clickMp3);
                     $("#div_demo .commingSoon").one("click", clickCommingSoon);
-                    $("#div_demo .commingSoon2").one("click", clickCommingSoon2);
+                    // $("#div_demo .commingSoon2").one("click", clickCommingSoon2);
                     if (location.hash) {
                         move();
                     }
