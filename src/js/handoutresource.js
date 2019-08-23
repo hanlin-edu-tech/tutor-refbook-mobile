@@ -4,25 +4,6 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     const tablePrefix = "tb";
     var qrcodeLists = [];
 
-    // 放置廣告圖連結位址
-    function advImg(type) {
-        // 國小自修 廣告連結
-        let six = `https://www.ehanlin.com.tw/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E5%B0%8F%E8%B3%87%E5%84%AA/SalesPlans.html`;
-        // 國中文言文閱讀 廣告連結
-        let read = `https://www.ehanlin.com.tw/type/ONLINE/id/y108_jhs_rev_pcreading1-special_et/SalesPlans.html`;
-        let StringUrl;
-
-        switch (type) {
-            case "國小自修":
-                StringUrl = six;
-                break;
-            case "國中文言閱讀":
-                StringUrl = read;
-                break;
-        }
-        return StringUrl;
-    }
-
     function clickVideo() {
         var data = getData(this);
         var temp = $("#video-template").tmpl({
@@ -50,7 +31,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     function clickPng() {
         var data = getData(this);
         var type = data.type;
-        data["advurl"] = advImg(type);
+        data["advurl"] = $(this).attr("data-desc");
         var temp = $("#png-template").tmpl({
             data: data
         });
@@ -164,6 +145,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
                 element.resourceClass = "flaticon-mp3-listen";
                 element.resourceTemplate = "mp3";
                 break;
+            // 廣告圖檔名已不是只有png 暫時不改png template 續用現在的 (填表必續填出副檔名)
             case "更多影片":
                 element.resourceClass = "flaticon-png-translate";
                 element.resourceTemplate = "png";

@@ -43,7 +43,7 @@
                         <tr>
                             {{if val.enable}}
                             <td id="${val.qRcode}" class="dataRow ${val.resourceTemplate}Row" data-resourceIds="${val.resourceIds}" data-target="#${val._id}"
-                                data-parentgroup="#tbody${dataVal.tbodyIndex}">
+                                data-parentgroup="#tbody${dataVal.tbodyIndex}" data-desc="${val.resourceDescription}">
                                 ${val.resourceName}
                             </td>
                             {{else}}
@@ -118,8 +118,9 @@
         <div id="${data.id}" class="collapse">
             {{each(idOrd,pngId) data.resourceIds}}
 
+            <!-- 統一新增在png檔案夾裡 -->
             <a href="${data.advurl}">
-                <img src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/${data.year}/${data.type}/${data.subject}/png/${pngId}.png">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/ehanlin-web-resource/handoutresource/${data.year}/${data.type}/${data.subject}/png/${pngId}">
             </a>
 
             {{if idOrd != data.resourceIds.length-1}}

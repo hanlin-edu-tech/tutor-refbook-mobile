@@ -150,9 +150,9 @@ let uploadGCS = bucketName => {
 }
 
 /* upload to gcp test */
-gulp.task('uploadGcpTest', uploadGCS.bind(uploadGCS, bucketNameForTest))
+gulp.task('uploadGcsTest', uploadGCS.bind(uploadGCS, bucketNameForTest))
 /* upload to gcp prod */
-gulp.task('uploadGcpProd', uploadGCS.bind(uploadGCS, bucketNameForProd))
+gulp.task('uploadGcsProd', uploadGCS.bind(uploadGCS, bucketNameForProd))
 
 gulp.task('changeTag', changeTag)
 gulp.task('changeDev', testChangeToDevURL) // 正常運作
