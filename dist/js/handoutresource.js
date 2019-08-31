@@ -30,9 +30,21 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
 
     function clickPng() {
         var data = getData(this);
-        var type = data.type;
-        data["advurl"] = $(this).attr("data-desc");
         var temp = $("#png-template").tmpl({
+            data: data
+        });
+        temp.appendTo(this);
+        temp.find("img").load(iframeResize);
+        if ($.isEmptyObject(preElement)) {
+            preElement = this;
+        }
+        iframeResize();
+    }
+
+    function clickAdv() {
+        var data = getData(this);
+        data["advurl"] = $(this).attr("data-desc");
+        var temp = $("#adv-template").tmpl({
             data: data
         });
         temp.appendTo(this);
@@ -145,10 +157,9 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
                 element.resourceClass = "flaticon-mp3-listen";
                 element.resourceTemplate = "mp3";
                 break;
-            // 廣告圖檔名已不是只有png 暫時不改png template 續用現在的 (填表必續填出副檔名)
             case "更多影片":
-                element.resourceClass = "flaticon-png-translate";
-                element.resourceTemplate = "png";
+                element.resourceClass = "flaticon-adv-translate";
+                element.resourceTemplate = "adv";
                 break;
             default:
                 element.resourceClass = "flaticon-video-solving";
@@ -294,6 +305,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
                     $("#div_demo .pngRow").one("click", clickPng);
                     $("#div_demo .pdfRow").one("click", clickPdf);
                     $("#div_demo .mp3Row").one("click", clickMp3);
+                    $("#div_demo .advRow").one("click", clickAdv);
                     $("#div_demo .commingSoon").one("click", clickCommingSoon);
                     // $("#div_demo .commingSoon2").one("click", clickCommingSoon2);
                     if (location.hash) {

@@ -24,6 +24,7 @@
 .table .dataRow.pdfRow,
 .table .dataRow.commingSoon,
 .table .dataRow.commingSoon2,
+.table .dataRow.advRow,
 .table .advertising .advertising-text {
   cursor: pointer;
   font-size: 70px;
@@ -76,6 +77,10 @@
 }
 
 .dataRow.pngRow img {
+  width: 100%;
+}
+
+.dataRow.advRow img {
   width: 100%;
 }
 
