@@ -283,9 +283,6 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
                     data.forEach(procressData);
 
                     var parentHash = 0;
-                    // if (location.hash) {
-                    //   parentHash = location.hash.split("_")[0].substring(1);
-                    // }
                     var temp = $("#resource").tmpl({
                         data: data,
                         parentHash: parentHash
