@@ -8,4 +8,6 @@ config.gypi
 .babelrc
 .idea
 CVS
+dist
 tutor.json
+tutor-test.json
