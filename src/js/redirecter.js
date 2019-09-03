@@ -68,9 +68,9 @@
 
     // 超級翰將一上
     switch (url) {
-        case "http://www.ehanlin.com.tw/event/collection/?year=108&type=%E8%B6%85%E7%B4%9A%E7%BF%B0%E5%B0%87%E4%B8%80%E4%B8%8A&subject=na#1_1":
-            window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E8%B6%85%E7%B4%9A%E7%BF%B0%E5%B0%87%E4%B8%80%E4%B8%8A&subject=na#1_1`;
-            break;
+        // case "http://www.ehanlin.com.tw/event/collection/?year=108&type=%E8%B6%85%E7%B4%9A%E7%BF%B0%E5%B0%87%E4%B8%80%E4%B8%8A&subject=na#1_1":
+        //     window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E8%B6%85%E7%B4%9A%E7%BF%B0%E5%B0%87%E4%B8%80%E4%B8%8A&subject=na#1_1`;
+        //     break;
         case "http://www.ehanlin.com.tw/event/collection/?year=108&type=%E8%B6%85%E7%B4%9A%E7%BF%B0%E5%B0%87%E4%B8%80%E4%B8%8A&subject=na#1_2":
             window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E8%B6%85%E7%B4%9A%E7%BF%B0%E5%B0%87%E4%B8%80%E4%B8%8A&subject=na#2_1`;
             break;
