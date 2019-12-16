@@ -82,7 +82,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
         }
         iframeResize();
         // $(".more-video-advertising").on("click", () => {
-        //     window.open("https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html");
+        //     window.open("https://www.ehanlin.com.tw/products/type/ONLINE/id/y106_g10_s1_so_training_et/SalesPlans.html");
         // });
     }
 
@@ -98,7 +98,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
     //     }
     //     iframeResize();
     //     $(".more-video-advertising2").on("click", () => {
-    //         window.open("https://www.ehanlin.com.tw/type/ONLINE/id/y106_g10_s2_so_training_et/SalesPlans.html");
+    //         window.open("https://www.ehanlin.com.tw/products/type/ONLINE/id/y106_g10_s2_so_training_et/SalesPlans.html");
     //     });
     // }
 
@@ -415,7 +415,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
                         });
 
                         $(".junior-advertising").on("click", () => {
-                            window.open("https://www.ehanlin.com.tw/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E4%B8%AD%E6%9C%83%E8%80%83%E7%B8%BD%E8%A4%87%E7%BF%92/SalesPlans.html");
+                            window.open("https://www.ehanlin.com.tw/products/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E4%B8%AD%E6%9C%83%E8%80%83%E7%B8%BD%E8%A4%87%E7%BF%92/SalesPlans.html");
                         });
                     });
 
@@ -505,7 +505,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
                         });
 
                         $(".junior-advertising").on("click", () => {
-                            window.open("https://www.ehanlin.com.tw/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E4%B8%AD%E6%9C%83%E8%80%83%E7%B8%BD%E8%A4%87%E7%BF%92/SalesPlans.html");
+                            window.open("https://www.ehanlin.com.tw/products/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E4%B8%AD%E6%9C%83%E8%80%83%E7%B8%BD%E8%A4%87%E7%BF%92/SalesPlans.html");
                         });
                     });
 
@@ -561,7 +561,7 @@ define(["jquery", "ajaxGet", "jqueryTemplate"], function($, ajaxGet) {
                         });
 
                         $(".junior-advertising").on("click", () => {
-                            window.open("https://www.ehanlin.com.tw/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E4%B8%AD%E6%9C%83%E8%80%83%E7%B8%BD%E8%A4%87%E7%BF%92/SalesPlans.html");
+                            window.open("https://www.ehanlin.com.tw/products/type/ONLINE/category/%E3%80%90e%E5%90%8D%E5%B8%AB%E3%80%91%E5%9C%8B%E4%B8%AD%E6%9C%83%E8%80%83%E7%B8%BD%E8%A4%87%E7%BF%92/SalesPlans.html");
                         });
                     });
 
