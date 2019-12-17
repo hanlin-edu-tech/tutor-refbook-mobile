@@ -99,6 +99,7 @@
             break;
     }
 
+    // 試題寶典一上
     switch (url) {
         case "http://www.ehanlin.com.tw/event/collection/?year=108&type=%E8%A9%A6%E9%A1%8C%E5%AF%B6%E5%85%B8%E4%B8%80%E4%B8%8A&subject=na#1_1":
             window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E8%A9%A6%E9%A1%8C%E5%AF%B6%E5%85%B8%E4%B8%80%E4%B8%8A&subject=na#1_1`;
