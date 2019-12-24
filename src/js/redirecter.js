@@ -131,4 +131,22 @@
         default:
             break;
     }
+
+    // 國小自修六下s2
+    switch (url) {
+        case "http://www.ehanlin.com.tw/event/collection/?year=108&type=%E5%9C%8B%E5%B0%8F%E8%87%AA%E4%BF%AEs2&subject=pc#1_1":
+            window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E5%9C%8B%E5%B0%8F%E8%87%AA%E4%BF%AEs2&subject=pc#1_1`;
+            break;
+        case "http://www.ehanlin.com.tw/event/collection/?year=108&type=%E5%9C%8B%E5%B0%8F%E8%87%AA%E4%BF%AEs2&subject=ma#1_1":
+            window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E5%9C%8B%E5%B0%8F%E8%87%AA%E4%BF%AEs2&subject=ma#1_1`;
+            break;
+        case "http://www.ehanlin.com.tw/event/collection/?year=108&type=%E5%9C%8B%E5%B0%8F%E8%87%AA%E4%BF%AEs2&subject=na#1_1":
+            window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E5%9C%8B%E5%B0%8F%E8%87%AA%E4%BF%AEs2&subject=na#1_1`;
+            break;
+        case "http://www.ehanlin.com.tw/event/collection/?year=108&type=%E5%9C%8B%E5%B0%8F%E8%87%AA%E4%BF%AEs2&subject=so#1_1":
+            window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E5%9C%8B%E5%B0%8F%E8%87%AA%E4%BF%AEs2&subject=so#1_1`;
+            break;
+        default:
+            break;
+    }
 })();
