@@ -151,22 +151,22 @@
     }
 
     // 教學式講義一下
-    switch (url) {
-        case "https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#2_1":
-            window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#1_3`;
-            break;
-        case "https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#2_2":
-            window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#1_4`;
-            break;
-        case "https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#4_1":
-            window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#3_2`;
-            break;
-        case "https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#5_1":
-            window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#3_3`;
-            break;
-        default:
-            break;
-    }
+    // switch (url) {
+    //     case "https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#2_1":
+    //         window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#1_3`;
+    //         break;
+    //     case "https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#2_2":
+    //         window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#1_4`;
+    //         break;
+    //     case "https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#4_1":
+    //         window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#3_2`;
+    //         break;
+    //     case "https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#5_1":
+    //         window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=108&type=%E6%95%99%E5%AD%B8%E5%BC%8F%E8%AC%9B%E7%BE%A9%E4%B8%80%E4%B8%8B&subject=na#3_3`;
+    //         break;
+    //     default:
+    //         break;
+    // }
 
     // 超級翰將一下
     switch (url) {
