@@ -353,6 +353,9 @@
 
     // 國小鼎甲修辭
     switch (url) {
+        case "https://www.ehanlin.com.tw/event/collection/?year=109&type=%E5%9C%8B%E5%B0%8F%E9%BC%8E%E7%94%B2%E4%BF%AE%E8%BE%AD&subject=pc#0_0":
+            window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=109&type=%E5%9C%8B%E5%B0%8F%E9%BC%8E%E7%94%B2%E4%BF%AE%E8%BE%AD&subject=pc#1_0`;
+            break;
         case "https://www.ehanlin.com.tw/event/collection/?year=109&type=%E5%9C%8B%E5%B0%8F%E9%BC%8E%E7%94%B2%E4%BF%AE%E8%BE%AD&subject=pc#1_1":
             window.location.href = `https://www.ehanlin.com.tw/event/collection/?year=109&type=%E5%9C%8B%E5%B0%8F%E9%BC%8E%E7%94%B2%E4%BF%AE%E8%BE%AD&subject=pc#1_8`;
             break;
