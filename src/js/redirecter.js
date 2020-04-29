@@ -414,4 +414,200 @@
             break;
     }
 
+    // 高中挖挖哇一上
+    let wowUrl = "https://www.ehanlin.com.tw/event/collection/?year=109&type=%E9%AB%98%E4%B8%AD%E6%8C%96%E6%8C%96%E5%93%87%E4%B8%80%E4%B8%8A&subject=";
+    switch (url) {
+        case wowUrl + "pc#3_4":
+            window.location.href = `${wowUrl}pc#3_3`;
+            break;
+        case wowUrl + "pc#3_5":
+            window.location.href = `${wowUrl}pc#3_4`;
+            break;
+        case wowUrl + "pc#7_4":
+            window.location.href = `${wowUrl}pc#7_3`;
+            break;
+        case wowUrl + "pc#7_6":
+            window.location.href = `${wowUrl}pc#7_4`;
+            break;
+        case wowUrl + "pc#10_4":
+            window.location.href = `${wowUrl}pc#10_3`;
+            break;
+        case wowUrl + "pc#10_5":
+            window.location.href = `${wowUrl}pc#10_4`;
+            break;
+        case wowUrl + "pc#13_6":
+            window.location.href = `${wowUrl}pc#13_4`;
+            break;
+        case wowUrl + "pc#13_7":
+            window.location.href = `${wowUrl}pc#13_5`;
+            break;
+        case wowUrl + "ma#1_2":
+            window.location.href = `${wowUrl}ma#2_1`;
+            break;
+        case wowUrl + "ma#1_3":
+            window.location.href = `${wowUrl}ma#3_1`;
+            break;
+        case wowUrl + "ma#2_1":
+            window.location.href = `${wowUrl}ma#4_1`;
+            break;
+        case wowUrl + "ma#2_2":
+            window.location.href = `${wowUrl}ma#5_1`;
+            break;
+        case wowUrl + "ma#2_3":
+            window.location.href = `${wowUrl}ma#6_1`;
+            break;
+        case wowUrl + "ma#3_1":
+            window.location.href = `${wowUrl}ma#7_1`;
+            break;
+        case wowUrl + "ma#3_2":
+            window.location.href = `${wowUrl}ma#8_1`;
+            break;
+        case wowUrl + "ma#4_1":
+            window.location.href = `${wowUrl}ma#9_1`;
+            break;
+        case wowUrl + "ma#4_2":
+            window.location.href = `${wowUrl}ma#10_1`;
+            break;
+        case wowUrl + "ma#4_3":
+            window.location.href = `${wowUrl}ma#11_1`;
+            break;
+        case wowUrl + "ma#4_4":
+            window.location.href = `${wowUrl}ma#12_1`;
+            break;
+        case wowUrl + "ma#5_1":
+            window.location.href = `${wowUrl}ma#13_1`;
+            break;
+        case wowUrl + "ma#5_2":
+            window.location.href = `${wowUrl}ma#14_1`;
+            break;
+        case wowUrl + "ma#6_1":
+            window.location.href = `${wowUrl}ma#15_1`;
+            break;
+        case wowUrl + "ma#6_2":
+            window.location.href = `${wowUrl}ma#16_1`;
+            break;
+        case wowUrl + "ma#6_3":
+            window.location.href = `${wowUrl}ma#17_1`;
+            break;
+        case wowUrl + "ma#6_4":
+            window.location.href = `${wowUrl}ma#18_1`;
+            break;
+        case wowUrl + "ma#7_1":
+            window.location.href = `${wowUrl}ma#19_1`;
+            break;
+        case wowUrl + "ma#7_2":
+            window.location.href = `${wowUrl}ma#20_1`;
+            break;
+        case wowUrl + "bi#3_5":
+            window.location.href = `${wowUrl}bi#3_3`;
+            break;
+        case wowUrl + "bi#4_4":
+            window.location.href = `${wowUrl}bi#4_2`;
+            break;
+        case wowUrl + "bi#4_5":
+            window.location.href = `${wowUrl}bi#4_3`;
+            break;
+        case wowUrl + "bi#8_4":
+            window.location.href = `${wowUrl}bi#8_3`;
+            break;
+        case wowUrl + "bi#9_4":
+            window.location.href = `${wowUrl}bi#9_3`;
+            break;
+        case wowUrl + "bi#9_5":
+            window.location.href = `${wowUrl}bi#9_4`;
+            break;
+        case wowUrl + "hi#3_1":
+            window.location.href = `${wowUrl}hi#3_3`;
+            break;
+        case wowUrl + "hi#3_2":
+            window.location.href = `${wowUrl}hi#3_1`;
+            break;
+        case wowUrl + "hi#3_3":
+            window.location.href = `${wowUrl}hi#6_1`;
+            break;
+        case wowUrl + "hi#4_1":
+            window.location.href = `${wowUrl}hi#8_1`;
+            break;
+        case wowUrl + "hi#4_2":
+            window.location.href = `${wowUrl}hi#8_2`;
+            break;
+        case wowUrl + "hi#4_3":
+            window.location.href = `${wowUrl}hi#7_1`;
+            break;
+        case wowUrl + "hi#4_4":
+            window.location.href = `${wowUrl}hi#4_2`;
+            break;
+        case wowUrl + "hi#4_5":
+            window.location.href = `${wowUrl}hi#4_3`;
+            break;
+        case wowUrl + "hi#4_6":
+            window.location.href = `${wowUrl}hi#4_4`;
+            break;
+        case wowUrl + "hi#4_7":
+            window.location.href = `${wowUrl}hi#4_5`;
+            break;
+        case wowUrl + "hi#4_8":
+            window.location.href = `${wowUrl}hi#4_6`;
+            break;
+        case wowUrl + "hi#4_9":
+            window.location.href = `${wowUrl}hi#4_7`;
+            break;
+        case wowUrl + "hi#5_1":
+            window.location.href = `${wowUrl}hi#3_2`;
+            break;
+        case wowUrl + "hi#5_2":
+            window.location.href = `${wowUrl}hi#5_3`;
+            break;
+        case wowUrl + "hi#6_1":
+            window.location.href = `${wowUrl}hi#4_1`;
+            break;
+        case wowUrl + "hi#6_11":
+            window.location.href = `${wowUrl}hi#6_9`;
+            break;
+        case wowUrl + "hi#7_1":
+            window.location.href = `${wowUrl}hi#5_1`;
+            break;
+        case wowUrl + "hi#8_1":
+            window.location.href = `${wowUrl}hi#5_2`;
+            break;
+        case wowUrl + "hi#8_2":
+            window.location.href = `${wowUrl}hi#8_3`;
+            break;
+        case wowUrl + "hi#8_3":
+            window.location.href = `${wowUrl}hi#8_4`;
+            break;
+        case wowUrl + "ge#3_5":
+            window.location.href = `${wowUrl}ge#3_4`;
+            break;
+        case wowUrl + "ge#3_6":
+            window.location.href = `${wowUrl}ge#3_5`;
+            break;
+        case wowUrl + "ge#5_5":
+            window.location.href = `${wowUrl}ge#5_4`;
+            break;
+        case wowUrl + "ge#6_4":
+            window.location.href = `${wowUrl}ge#6_3`;
+            break;
+        case wowUrl + "ge#7_5":
+            window.location.href = `${wowUrl}ge#7_3`;
+            break;
+        case wowUrl + "ge#11_4":
+            window.location.href = `${wowUrl}ge#11_3`;
+            break;
+        case wowUrl + "cs#1_11":
+            window.location.href = `${wowUrl}cs#1_10`;
+            break;
+        case wowUrl + "cs#6_9":
+            window.location.href = `${wowUrl}cs#6_8`;
+            break;
+        case wowUrl + "cs#7_4":
+            window.location.href = `${wowUrl}cs#7_3`;
+            break;
+        case wowUrl + "cs#7_5":
+            window.location.href = `${wowUrl}cs#7_4`;
+            break;
+        default:
+            break;
+    }
+
 })();
