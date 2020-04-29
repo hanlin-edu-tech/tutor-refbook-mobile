@@ -417,9 +417,6 @@
     // 高中挖挖哇一上
     let wowUrl = "https://www.ehanlin.com.tw/event/collection/?year=109&type=%E9%AB%98%E4%B8%AD%E6%8C%96%E6%8C%96%E5%93%87%E4%B8%80%E4%B8%8A&subject=";
     switch (url) {
-        case wowUrl + "pc#3_4":
-            window.location.href = `${wowUrl}pc#3_3`;
-            break;
         case wowUrl + "pc#3_5":
             window.location.href = `${wowUrl}pc#3_4`;
             break;
@@ -600,14 +597,7 @@
         case wowUrl + "cs#6_9":
             window.location.href = `${wowUrl}cs#6_8`;
             break;
-        case wowUrl + "cs#7_4":
-            window.location.href = `${wowUrl}cs#7_3`;
-            break;
-        case wowUrl + "cs#7_5":
-            window.location.href = `${wowUrl}cs#7_4`;
-            break;
         default:
             break;
     }
-
 })();
