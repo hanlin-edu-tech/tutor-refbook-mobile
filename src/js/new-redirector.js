@@ -24,9 +24,9 @@
             response.forEach(function (event, index) {
                 event.resources.forEach(function (element, index) {
 
-                    if (element.redirecter !== null && queryDate.subject == element.qRcode) {
-                        console.log(element.qRcode + " 轉 " + element.redirecter)
-                        window.location.href = decodeURIComponent(url).split(queryDate.subject)[0] + element.redirecter
+                    if (element.redirector !== null && queryDate.subject == element.qRcode) {
+                        console.log(element.qRcode + " 轉 " + element.redirector)
+                        window.location.href = decodeURIComponent(url).split(queryDate.subject)[0] + element.redirector
                     }
 
                 })
