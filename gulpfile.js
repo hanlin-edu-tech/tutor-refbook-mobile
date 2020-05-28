@@ -46,28 +46,6 @@ let changeTag = () => {
         .pipe(gulp.dest("src"));
 };
 
-let testChangeToDevURL = () => {
-    let url = S3 + "(\\d.\\d.\\d{1,2}-\\w+)";
-    let regExp = new RegExp(url, "g");
-    return gulp
-        .src(["src/js/handoutresource.js"], {
-            base: "src"
-        })
-        .pipe(replace(regExp, "."))
-        .pipe(replace(apiHost + "${query}", `${host}${apiHost}year=107&type=高一上學習寶典&subject=cs`))
-        .pipe(gulp.dest("src"));
-};
-
-let devChangeToTestURL = () => {
-    return gulp
-        .src(["src/js/handoutresource.js"], {
-            base: "src"
-        })
-        .pipe(replace("./js", `${S3}${gulp.env.tag}/js`))
-        .pipe(replace(`${host}${apiHost}year=107&type=高一上學習寶典&subject=cs`, apiHost + "${query}"))
-        .pipe(gulp.dest("src"));
-};
-
 let testChangeToProduction = () => {
     let url = S3 + "(\\d.\\d.\\d{1,2}-\\w+)";
     let regExp = new RegExp(url, "g");
@@ -155,8 +133,6 @@ gulp.task("uploadGcsTest", uploadGCSTest.bind(uploadGCSTest, bucketNameForTest))
 gulp.task("uploadGcsProd", uploadGCS.bind(uploadGCS, bucketNameForProd));
 
 gulp.task("changeTag", changeTag);
-gulp.task("changeDev", testChangeToDevURL); // 正常運作
-gulp.task("changeTest", devChangeToTestURL); // 正常運作
 gulp.task("testChangeProduction", testChangeToProduction);
 gulp.task("productionChangeTest", productionChangeToTest);
 gulp.task("js", () => {
