@@ -38,46 +38,46 @@
             </tr>
 
             {{if parentHash == dataVal.tbodyIndex }}
-            <tbody id="tbody${dataVal.tbodyIndex}" class="collapse in">
-                {{else}}
-                    <tbody id="tbody${dataVal.tbodyIndex}" class="collapse">
-                        {{each(prop,val) dataVal.resources}}
-                        <tr>
-                            {{if val.enable}}
-                            <td id="${val.qRcode}" class="dataRow ${val.resourceTemplate}Row" data-resourceIds="${val.resourceIds}" data-target="#${val._id}"
-                                data-parentgroup="#tbody${dataVal.tbodyIndex}" data-desc="${val.resourceDescription}">
+                <tbody id="tbody${dataVal.tbodyIndex}" class="collapse in">
+            {{else}}
+                <tbody id="tbody${dataVal.tbodyIndex}" class="collapse">
+            {{/if}}
+                {{each(prop,val) dataVal.resources}}
+                    <tr>
+                        {{if val.enable}}
+                        <td id="${val.qRcode}" class="dataRow ${val.resourceTemplate}Row" data-resourceIds="${val.resourceIds}" data-target="#${val._id}"
+                            data-parentgroup="#tbody${dataVal.tbodyIndex}" data-desc="${val.resourceDescription}">
+                            ${val.resourceName}
+                        </td>
+                        {{else}}
+                        <td id="${val.qRcode}" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
+                                ${val.resourceName}
+                        </td>
+
+
+                        <!-- {{if val.resourceDescription}}
+                            <td id="${val.qRcode}" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
                                 ${val.resourceName}
                             </td>
-                            {{else}}
-                            <td id="${val.qRcode}" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
-                                    ${val.resourceName}
+                        {{else}}
+                            <td id="${val.qRcode}" class="dataRow commingSoon2" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
+                                ${val.resourceName} ${val.resourceDescription}
                             </td>
+                        {{/if}} -->
 
 
-                            <!-- {{if val.resourceDescription}}
-                                <td id="${val.qRcode}" class="dataRow commingSoon" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
-                                    ${val.resourceName}
-                                </td>
-                            {{else}}
-                                <td id="${val.qRcode}" class="dataRow commingSoon2" data-target="#${val._id}" data-parentgroup="#tbody${dataVal.tbodyIndex}">
-                                    ${val.resourceName} ${val.resourceDescription}
-                                </td>
-                            {{/if}} -->
-
-
-                            {{/if}}
-                        </tr>
-                        <tr class="fullscreen-tr" style="display:none;">
-                            <td>
-                                <div class="wrapper">
-                                    <button class="fullscreen-button" type="button">全螢幕</button>
-                                </div>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
+                        {{/if}}
+                    </tr>
+                    <tr class="fullscreen-tr" style="display:none;">
+                        <td>
+                            <div class="wrapper">
+                                <button class="fullscreen-button" type="button">全螢幕</button>
+                            </div>
+                        </td>
+                    </tr>
+                {{/each}}
             </tbody>
-            {{/if}}
+            
 
             {{/each}}
         </table>
