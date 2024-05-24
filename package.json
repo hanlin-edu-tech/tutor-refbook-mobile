@@ -20,7 +20,7 @@
     "gulp-template-util": "0.0.2",
     "imagemin-pngquant": "^5.1.0",
     "path": "^0.12.7",
-    "pug": "2.0.0-rc.2",
+    "pug": "3.0.2",
     "q": "^1.5.1"
   },
   "dependencies": {
